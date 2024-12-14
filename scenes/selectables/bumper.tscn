@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd3gcydyxpxov"]
+
+[ext_resource type="PackedScene" uid="uid://c7xt1q81m1k0u" path="res://scenes/selectables/Selectable.tscn" id="1_khbtv"]
+
+[node name="Bumper" instance=ExtResource("1_khbtv")]
+selectable_name = "bumper"
+
+[node name="Label" parent="." index="0"]
+text = "Bumper"

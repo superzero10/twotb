@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://62nx7flaua2"]
+
+[ext_resource type="PackedScene" uid="uid://dx2f7sdw6jb8" path="res://scenes/selectables/ramp.tscn" id="1_ougi4"]
+[ext_resource type="PackedScene" uid="uid://bd3gcydyxpxov" path="res://scenes/selectables/bumper.tscn" id="2_eh5rf"]
+[ext_resource type="PackedScene" uid="uid://br4x441ijxdvn" path="res://scenes/selectables/barrier.tscn" id="3_7aw53"]
+
+[node name="Selectables" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 138.0
+offset_top = 559.0
+offset_right = -189.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 6
+
+[node name="Ramp" parent="GridContainer" instance=ExtResource("1_ougi4")]
+layout_mode = 2
+
+[node name="Barrier" parent="GridContainer" instance=ExtResource("3_7aw53")]
+layout_mode = 2
+
+[node name="Bumper" parent="GridContainer" instance=ExtResource("2_eh5rf")]
+layout_mode = 2

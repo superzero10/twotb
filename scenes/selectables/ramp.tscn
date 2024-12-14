@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx2f7sdw6jb8"]
+
+[ext_resource type="PackedScene" uid="uid://c7xt1q81m1k0u" path="res://scenes/selectables/Selectable.tscn" id="1_pj5kv"]
+
+[node name="Ramp" instance=ExtResource("1_pj5kv")]
+selectable_name = "ramp"
