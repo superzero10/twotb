@@ -8,6 +8,8 @@ extends Camera3D
 # Variables pour stocker la rotation
 var rotation_x: float = 0.0
 var rotation_y: float = 0.0
+var mouse_captured = true
+
 
 # Fonction appelée lors du démarrage
 func _ready():
@@ -42,6 +44,13 @@ func _process(delta: float):
 		direction += transform.basis.y
 	if Input.is_action_pressed("move_down"):  # Shift
 		direction -= transform.basis.y
+	# Vérifie si l'action 'toggle_mouse_capture' a été déclenchée
+	if Input.is_action_just_pressed("toggle_mouse_capture"):
+		mouse_captured = not mouse_captured  # Inverse l'état
+		if mouse_captured:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  # Capture le curseur
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)  # Libère le curseur
 
 	# Ajuster la vitesse (avec ou sans sprint)
 	var speed: float = move_speed
