@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyyep0ml554pg"]
+[gd_scene load_steps=3 format=3 uid="uid://dyyep0ml554pg"]
 
+[ext_resource type="Script" path="res://scenes/selectables/SelectableModel_script.gd" id="1_dfykp"]
 [ext_resource type="PackedScene" uid="uid://b8o8yi3agkxo" path="res://assets/rampU_model.glb" id="1_hdd2r"]
 
 [node name="RampUModel" type="Node3D"]
+script = ExtResource("1_dfykp")
+model_path = NodePath("rampU_model")
 
 [node name="rampU_model" parent="." instance=ExtResource("1_hdd2r")]
 transform = Transform3D(-0.13399, 0, -7.69258e-09, 0, 0.0683053, 0, 1.17138e-08, 0, -0.0879928, 0, 0, 0)

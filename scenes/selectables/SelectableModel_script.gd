@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 # Récupère le nœud contenant le modèle importé
 @export_node_path var model_path:
