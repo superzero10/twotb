@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnb6jx7ogtqv6"]
+
+[ext_resource type="PackedScene" uid="uid://sc7r1jesmv5s" path="res://scenes/ball.tscn" id="1_yrt37"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="2_gqvmu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wj53c"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ks2kn"]
+size = Vector3(10, 0.5, 10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="sol" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sol"]
+shape = SubResource("BoxShape3D_wj53c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="sol"]
+mesh = SubResource("BoxMesh_ks2kn")
+
+[node name="Node3D" parent="." instance=ExtResource("1_yrt37")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -4)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 10.0
+
+[node name="Node3D2" parent="." instance=ExtResource("2_gqvmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 2.12812, -0.627964)
