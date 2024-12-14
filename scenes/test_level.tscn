@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnb6jx7ogtqv6"]
+[gd_scene load_steps=7 format=3 uid="uid://dnb6jx7ogtqv6"]
 
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="1_yrt37"]
 [ext_resource type="PackedScene" uid="uid://cn1imrcyffm5s" path="res://scenes/default_stuff.tscn" id="3_d76lt"]
+[ext_resource type="PackedScene" uid="uid://dqsa2qx4sbjpc" path="res://scenes/selectables/fan_model.tscn" id="4_d03re"]
 [ext_resource type="PackedScene" uid="uid://d2c0bngruk8sn" path="res://scenes/selectables/bumper_model.tscn" id="5_j2oak"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wj53c"]
@@ -27,6 +28,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.8948, 0)
 omni_range = 10.0
 
 [node name="BumperModel" parent="." instance=ExtResource("5_j2oak")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98752, 0.25, 3.86602)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04938, 0.309287, 3.86056)
 
 [node name="default_stuff" parent="." instance=ExtResource("3_d76lt")]
+
+[node name="FanModel" parent="." instance=ExtResource("4_d03re")]
+transform = Transform3D(-0.400125, 0, 0.916461, 0, 1, 0, -0.916461, 0, -0.400125, 0.693287, 0.790951, -0.723915)

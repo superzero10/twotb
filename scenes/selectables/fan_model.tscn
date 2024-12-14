@@ -1,17 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqsa2qx4sbjpc"]
+[gd_scene load_steps=6 format=3 uid="uid://dqsa2qx4sbjpc"]
 
-[ext_resource type="Script" path="res://scenes/selectables/SelectableModel_script.gd" id="1_3nx1p"]
+[ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="1_eli3e"]
+[ext_resource type="Script" path="res://scripts/fan.gd" id="1_mdbg5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ejsrj"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0mfx6"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yy7yw"]
+
 [node name="FanModel" type="Node3D"]
-script = ExtResource("1_3nx1p")
-model_path = NodePath("StaticBody3D")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500732, 0)
+script = ExtResource("1_mdbg5")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="SelectableManager" parent="." node_paths=PackedStringArray("togglable_bodies") instance=ExtResource("1_eli3e")]
+model_path = NodePath("../MeshInstance3D/StaticBody3D")
+togglable_bodies = [NodePath("../Area3D")]
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(0.955847, 0, 0, 0, 0.112228, 0.52598, 0, -0.0739615, 0.798115, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.955847, 0, 0, 0, -0.00389836, 0.955444, 0, -0.134351, -0.0277226, 0, 0, 0)
 mesh = SubResource("BoxMesh_ejsrj")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -0.202087, -0.979368, 0, 0.979368, -0.202087, 0, 0, 0)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+shape = SubResource("BoxShape3D_0mfx6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.64267e-07, 0, -2.79397e-09, 1.00004, -0.0382051, 0.960569, 0.062302)
+size = Vector3(0.134247, 0.969116, 0.151276)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+shape = SubResource("CylinderShape3D_yy7yw")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
