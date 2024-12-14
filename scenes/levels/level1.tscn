@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://voiovrq558iq"]
+
+[ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="1_ki607"]
+[ext_resource type="PackedScene" uid="uid://cfh25yn2qxdxn" path="res://assets/Immeuble V5.glb" id="2_q168a"]
+[ext_resource type="PackedScene" uid="uid://ccq223y5g2o4u" path="res://assets/Immeuble V4.glb" id="3_uk64u"]
+[ext_resource type="PackedScene" uid="uid://d384lf8plmn6t" path="res://scenes/default_stuff.tscn" id="4_q5mxt"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="5_pn8jj"]
+
+[node name="Level1" type="Node3D"]
+
+[node name="default_stuff" parent="." instance=ExtResource("4_q5mxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.19801, 8.75372)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.757872, 0.652403, 0, -0.652403, 0.757872, 0, 26.6836, 11.8052)
+
+[node name="Roofs" type="Node3D" parent="."]
+
+[node name="Roof1" parent="Roofs" instance=ExtResource("1_ki607")]
+transform = Transform3D(-0.573576, 0, -0.819152, 0, 1, 0, 0.819152, 0, -0.573576, 0, 0, 0)
+
+[node name="Roof2" parent="Roofs" instance=ExtResource("2_q168a")]
+transform = Transform3D(-0.657743, 0, 0.753242, 0, 1, 0, -0.753242, 0, -0.657743, 5.1686, -0.727513, -8.59117)
+
+[node name="Roof3" parent="Roofs" instance=ExtResource("2_q168a")]
+transform = Transform3D(0.570699, 0, 0.821159, 0, 1, 0, -0.821159, 0, 0.570699, -2.35594, 0, -11.7157)
+
+[node name="Roof4" parent="Roofs" instance=ExtResource("3_uk64u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28238, 0, -23.4494)
+
+[node name="ball" parent="." instance=ExtResource("5_pn8jj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.53072, 4.48274)

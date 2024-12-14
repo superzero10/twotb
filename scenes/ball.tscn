@@ -6,7 +6,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b0hwj"]
 
-[node name="Node3D" type="Node3D"]
+[node name="ball" type="Node3D"]
 
 [node name="ball" type="RigidBody3D" parent="."]
 collision_layer = 2
