@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://or5s6wuewti"]
+
+[ext_resource type="Script" path="res://scripts/level_selectables.gd" id="1_fnpko"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_8yhl3"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="3_h5hyk"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="4_utfwy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwo5v"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_agtgj"]
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_fnpko")
+start_position = null
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Ball" parent="." instance=ExtResource("2_8yhl3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2932, 7.39404, 0)
+
+[node name="Toit1" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, -10, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Toit1"]
+shape = SubResource("BoxShape3D_xwo5v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Toit1"]
+mesh = SubResource("BoxMesh_agtgj")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="GameUi" parent="." instance=ExtResource("3_h5hyk")]
+
+[node name="camera" parent="." instance=ExtResource("4_utfwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.84392, 4.92432)
+
+[node name="Toit2" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 24.3109, -13.4185, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Toit2"]
+shape = SubResource("BoxShape3D_xwo5v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Toit2"]
+mesh = SubResource("BoxMesh_agtgj")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Toit3" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 17.646, -6.86847, 23.7452)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Toit3"]
+shape = SubResource("BoxShape3D_xwo5v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Toit3"]
+mesh = SubResource("BoxMesh_agtgj")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Toit4" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -7.25, -7.73382, 25.6663)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Toit4"]
+shape = SubResource("BoxShape3D_xwo5v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Toit4"]
+mesh = SubResource("BoxMesh_agtgj")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Toit5" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -25.0482, -6.76171, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Toit5"]
+shape = SubResource("BoxShape3D_xwo5v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Toit5"]
+mesh = SubResource("BoxMesh_agtgj")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.90384, 12.3519)
+omni_range = 4096.0
+
+[connection signal="selectable_model_selected" from="GameUi" to="." method="_on_game_ui_selectable_model_selected"]

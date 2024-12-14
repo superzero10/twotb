@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx77oeigsvi4"]
+[gd_scene load_steps=5 format=3 uid="uid://bx77oeigsvi4"]
 
 [ext_resource type="PackedScene" uid="uid://62nx7flaua2" path="res://scenes/selectables/Selectables.tscn" id="1_1r7di"]
 [ext_resource type="Script" path="res://scripts/game_ui.gd" id="1_oo3s1"]
+[ext_resource type="FontFile" uid="uid://j4p4e3vjnh4u" path="res://assets/American Captain.otf" id="3_dhkik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oi5li"]
+font = ExtResource("3_dhkik")
+font_size = 120
+font_color = Color(0.821789, 0.821789, 0.821789, 1)
+outline_size = 5
+outline_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
 
 [node name="GameUi" type="PanelContainer"]
 anchors_preset = 15
@@ -18,5 +26,11 @@ alignment = 2
 
 [node name="Selectables" parent="VBoxContainer" instance=ExtResource("1_1r7di")]
 layout_mode = 2
+
+[node name="Countdown" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_oi5li")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="selectable_model_selected" from="VBoxContainer/Selectables" to="." method="_on_selectables_selectable_model_selected"]

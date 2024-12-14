@@ -1,77 +1,41 @@
 extends Node3D
 
-var selectable_model: PackedScene
-var dragged_instance = null
-const DEFAULT_PLANE = Plane(Vector3.UP, 0)
-const MAX_RAYCAST_DISTANCE = 1000
+# Références aux éléments de la scène
+@onready var ball = $Ball  # Référence à la balle (RigidBody3D)
+@onready var timer = $Timer  # Référence au Timer
+@onready var ui_label = $GameUI/Label  # Référence au Label pour le compte à rebours
 
-func start_dragging():
-	add_child(dragged_instance)
-	var mouse_position_3d = get_mouse_position_on_plane()
-	if mouse_position_3d:
-		dragged_instance.global_transform.origin = mouse_position_3d
+@export var start_position: Vector3 = Vector3(0, 5, 0)  # Position de départ de la balle
 
-func stop_dragging():
-	dragged_instance.enable_model()
-	dragged_instance = null
-	selectable_model = null
+func _ready():
+	# Initialisation de la balle
+	setup_ball()
+	setup_ui()
+	start_countdown()
 
-func cancel_dragging():
-	if is_instance_valid(dragged_instance):
-		dragged_instance.queue_free()
-	dragged_instance = null
-	selectable_model = null
+func setup_ball():
+	ball.mode = RigidBody3D.MODE_STATIC  # Désactiver la physique de la balle au début
+	ball.global_transform.origin = start_position  # Positionner la balle au point de départ
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.pressed:
-			if event.button_index == MOUSE_BUTTON_LEFT and dragged_instance:
-				stop_dragging()
-			if event.button_index == MOUSE_BUTTON_RIGHT:
-				cancel_dragging()
-	elif event is InputEventMouseMotion and dragged_instance:
-		# Mettre à jour la position de l'instance pour suivre la souris sur le plan
-		var mouse_position_3d = get_mouse_position_on_plane()
-		if mouse_position_3d:
-			dragged_instance.global_transform.origin = mouse_position_3d
+func setup_ui():
+	ui_label.text = "5"  # Initialiser le texte du compte à rebours
+	ui_label.visible = true  # Rendre le label visible
 
-func get_dynamic_plane(ray_origin, ray_direction) -> Plane :
-	var space_state = get_world_3d().direct_space_state
-	var from = ray_origin
-	var to = from + ray_direction * MAX_RAYCAST_DISTANCE
-	const collision_mask = 1 & ~2 & ~4
-	# Configurer le RayCast3D pour détecter les objets sous la souris
-	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask, [self])
-	query.collide_with_areas = true
-	var collision = space_state.intersect_ray(query)
+func start_countdown():
+	timer.start()  # Démarrer le timer
+	update_countdown()  # Lancer la mise à jour du compte à rebours
 
-	if collision:
-		# Obtenir les informations de collision
-		# Définir un nouveau plan basé sur la surface touchée
-		return Plane(collision.normal, collision.position)
+# Mettre à jour le compte à rebours
+func update_countdown():
+	while int(timer.time_left) > 0:
+		var time_left = int(timer.time_left) + 1
+		ui_label.text = str(time_left)
+		await get_tree().create_timer(1.0).timeout  # Attendre 1 seconde
 
-	# IMPORTANT : Par défaut, si le Raycast fail, retourne le Plane par défaut (on met l'objet à Y = 0)
-	return DEFAULT_PLANE
+	await on_countdown_finished()
 
-func get_mouse_position_on_plane():
-	var camera = get_viewport().get_camera_3d()
-	if not camera:
-		return null
-	var ray_origin = camera.project_ray_origin(get_viewport().get_mouse_position())
-	var ray_direction = camera.project_ray_normal(get_viewport().get_mouse_position())
-	# Lorsque l'on arrive ici, fais un Raycast pour connaître le point d'ancrage de l'objet en-dessous de la souris
-	var plane = get_dynamic_plane(ray_origin, ray_direction)
-	# Calculer l'intersection entre le rayon et le nouveau plan
-	var intersection = plane.intersects_ray(ray_origin, ray_direction)
-	return intersection
-
-func _on_game_ui_selectable_model_selected(passed_selectable_model):
-	selectable_model = passed_selectable_model
-	if selectable_model:
-		dragged_instance = selectable_model.instantiate()
-		dragged_instance.disable_model()
-		start_dragging()
-
-func _on_camera_slow_motion_toggled(toggled: bool):
-	if (toggled == false):
-		cancel_dragging()
+func on_countdown_finished():
+	ui_label.text = "GO!"  # Afficher "GO!"
+	ball.mode = RigidBody3D.MODE_RIGID  # Activer la physique de la balle
+	await get_tree().create_timer(1.0).timeout  # Attendre une seconde
+	ui_label.hide()  # Cacher le label
