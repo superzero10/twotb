@@ -1,4 +1,7 @@
-extends Camera3D
+extends Node3D
+
+# Signal pour permettre au Sélecteur de modèle de se mettre à jour
+signal slow_motion_toggled
 
 # Vitesse de déplacement et de rotation
 @export var move_speed: float = 10.0
@@ -58,16 +61,17 @@ func _process(delta: float):
 		apply_progressive_movement(delta)
 
 func activate_slow_motion():
+	slow_motion_toggled.emit(true)
 	camera_active = false
 	is_slow_motion = true
 	ignore_mouse_input = true  # Ignorer temporairement les mouvements de souris
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)  # Libère la souris
-
 	# Geler la direction actuelle
 	current_direction = calculate_current_direction()
 	current_speed = move_speed  # Initialiser à la vitesse normale
 
 func deactivate_slow_motion():
+	slow_motion_toggled.emit(false)
 	camera_active = true
 	is_slow_motion = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  # Capture la souris

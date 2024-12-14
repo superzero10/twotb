@@ -20,18 +20,11 @@ func cancel_dragging():
 	dragged_instance = null
 	selectable_model = null
 
-func toggle_dragging():
-	if dragged_instance == null:
-		dragged_instance = selectable_model.instantiate()
-		start_dragging(dragged_instance)
-	else:
-		stop_dragging()
-
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			if event.button_index == MOUSE_BUTTON_LEFT and selectable_model:
-				toggle_dragging()
+			if event.button_index == MOUSE_BUTTON_LEFT and dragged_instance:
+				stop_dragging()
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				cancel_dragging()
 	elif event is InputEventMouseMotion and dragged_instance:
@@ -54,3 +47,7 @@ func _on_game_ui_selectable_model_selected(passed_selectable_model):
 	if selectable_model:
 		dragged_instance = selectable_model.instantiate()
 		start_dragging(dragged_instance)
+
+func _on_camera_slow_motion_toggled(toggled: bool):
+	if (toggled == false):
+		cancel_dragging()
