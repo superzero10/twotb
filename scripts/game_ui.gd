@@ -1,0 +1,6 @@
+extends PanelContainer
+
+signal selectable_model_selected
+
+func _on_selectables_selectable_model_selected(selectable_model):
+	selectable_model_selected.emit(selectable_model)
