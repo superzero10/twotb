@@ -6,6 +6,7 @@
 [node name="Bumper" instance=ExtResource("1_khbtv")]
 selectable_name = "bumper"
 selectable_model = ExtResource("2_yxwxo")
+action_name = "select_bumper"
 
 [node name="Button" parent="MarginContainer" index="0"]
 text = "Bumper"

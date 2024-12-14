@@ -6,6 +6,7 @@
 [node name="Ramp" instance=ExtResource("1_pj5kv")]
 selectable_name = "ramp"
 selectable_model = ExtResource("2_1kfx2")
+action_name = "select_ramp"
 
 [node name="Button" parent="MarginContainer" index="0"]
 text = "Rampe"

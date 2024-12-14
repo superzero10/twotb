@@ -1,18 +1,27 @@
 extends Node3D
 
+# CONSTANTES
+const DEFAULT_PLANE = Plane(Vector3.UP, 0) # Quand le joueur place un objet dans le vide
+const MODEL_ROTATION_ANGLE = 30 # Quand le joueur veut effectuer une rotation d'un objet
+const MAX_RAYCAST_DISTANCE = 10000 # Raycast pour placer un objet
+
+# Très important : Il faut toujours un "GameUi" dans le niveau
+@onready var game_ui = $GameUi
+
 var selectable_model: PackedScene
 var dragged_instance = null
-const DEFAULT_PLANE = Plane(Vector3.UP, 0)
-const MAX_RAYCAST_DISTANCE = 1000
 
 func start_dragging():
+	if dragged_instance.has_method("disable_model"):
+		dragged_instance.disable_model()
 	add_child(dragged_instance)
 	var mouse_position_3d = get_mouse_position_on_plane()
 	if mouse_position_3d:
 		dragged_instance.global_transform.origin = mouse_position_3d
 
 func stop_dragging():
-	dragged_instance.enable_model()
+	if dragged_instance.has_method("enable_model"):
+		dragged_instance.enable_model()
 	dragged_instance = null
 	selectable_model = null
 
@@ -22,6 +31,16 @@ func cancel_dragging():
 	dragged_instance = null
 	selectable_model = null
 
+func rotate_dragging(clockwise = true):
+	if not dragged_instance:
+		return
+	var rotation = MODEL_ROTATION_ANGLE
+	var angle = deg_to_rad(rotation)
+	if clockwise:
+		dragged_instance.rotate_y(angle)
+	else:
+		dragged_instance.rotate_y(-angle)
+
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
@@ -29,6 +48,8 @@ func _input(event):
 				stop_dragging()
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				cancel_dragging()
+			if event.is_action_pressed("rotate_right") or event.is_action_pressed("rotate_left"):
+				rotate_dragging(event.is_action_pressed("rotate_right"))
 	elif event is InputEventMouseMotion and dragged_instance:
 		# Mettre à jour la position de l'instance pour suivre la souris sur le plan
 		var mouse_position_3d = get_mouse_position_on_plane()
@@ -66,12 +87,13 @@ func get_mouse_position_on_plane():
 	return intersection
 
 func _on_game_ui_selectable_model_selected(passed_selectable_model):
+	cancel_dragging()
 	selectable_model = passed_selectable_model
 	if selectable_model:
 		dragged_instance = selectable_model.instantiate()
-		dragged_instance.disable_model()
 		start_dragging()
 
 func _on_camera_slow_motion_toggled(toggled: bool):
+	game_ui.set_selectables_visiblity(toggled)
 	if (toggled == false):
 		cancel_dragging()
