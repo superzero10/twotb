@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1lsbye1cylvb"]
+[gd_scene load_steps=3 format=3 uid="uid://b1lsbye1cylvb"]
 
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="1_27fra"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="1_w8jv1"]
 
 [node name="camera" type="Node3D"]
+script = ExtResource("1_w8jv1")
 
 [node name="CameraControl" type="Camera3D" parent="."]
 script = ExtResource("1_27fra")
+
+[connection signal="slow_motion_toggled" from="CameraControl" to="." method="_on_camera_control_slow_motion_toggled"]

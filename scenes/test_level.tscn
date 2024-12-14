@@ -37,4 +37,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 2.12812, -0.627964)
 [node name="RampModel" parent="." instance=ExtResource("5_nixe1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
+[connection signal="slow_motion_toggled" from="camera" to="." method="_on_camera_slow_motion_toggled"]
 [connection signal="selectable_model_selected" from="GameUi" to="." method="_on_game_ui_selectable_model_selected"]

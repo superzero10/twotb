@@ -17,11 +17,6 @@ func set_selectable_model(value):
 	selectable_model = value
 	if not is_inside_tree():
 		await ready
-#
-#func _on_gui_input(event):
-	#if event is InputEventMouseButton and event.pressed:
-		#selectable_selected.emit(selectable_name, selectable_model)
-
 
 func _on_button_pressed():
 	selectable_selected.emit(selectable_name, selectable_model)
