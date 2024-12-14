@@ -2,46 +2,42 @@
 
 [ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="1_eli3e"]
 [ext_resource type="Script" path="res://scripts/fan.gd" id="1_mdbg5"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ejsrj"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0mfx6"]
+[ext_resource type="PackedScene" uid="uid://bdndsaviieb70" path="res://assets/ventilo.glb" id="3_imro7"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yy7yw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0mfx6"]
+size = Vector3(1, 2.00989, 2.4856)
 
 [node name="FanModel" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500732, 0)
 script = ExtResource("1_mdbg5")
 
 [node name="SelectableManager" parent="." node_paths=PackedStringArray("togglable_bodies") instance=ExtResource("1_eli3e")]
-model_path = NodePath("../MeshInstance3D/StaticBody3D")
+model_path = NodePath("../ventilo")
 togglable_bodies = [NodePath("../Area3D")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.955847, 0, 0, 0, -0.00389836, 0.955444, 0, -0.134351, -0.0277226, 0, 0, 0)
-mesh = SubResource("BoxMesh_ejsrj")
-skeleton = NodePath("StaticBody3D")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, -0.202087, -0.979368, 0, 0.979368, -0.202087, 0, 0, 0)
-collision_layer = 8
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
-shape = SubResource("BoxShape3D_0mfx6")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, -8.64267e-07, 0, -2.79397e-09, 1.00004, -0.0382051, 0.960569, 0.062302)
-size = Vector3(0.134247, 0.969116, 0.151276)
-
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367535, 0)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
 shape = SubResource("CylinderShape3D_yy7yw")
+
+[node name="ventilo" parent="." instance=ExtResource("3_imro7")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.35249, -3.02125, 0.517339)
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ventilo"]
+transform = Transform3D(1, 0, 0, 0, -0.202087, -0.979368, 0, 0.979368, -0.202087, 1.1846, 7.10343, -3.09007)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ventilo/StaticBody3D"]
+transform = Transform3D(1, 2.30926e-13, 4.66294e-15, 0, 0.965928, 0.258819, 0, -0.25882, 0.965927, -0.186117, 0.706918, 0.590352)
+shape = SubResource("BoxShape3D_0mfx6")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]
