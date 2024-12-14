@@ -5,5 +5,5 @@
 [node name="Bumper" instance=ExtResource("1_khbtv")]
 selectable_name = "bumper"
 
-[node name="Label" parent="." index="0"]
+[node name="Label" parent="MarginContainer" index="1"]
 text = "Bumper"

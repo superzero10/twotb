@@ -5,18 +5,8 @@ signal selectable_selected
 @export var selectable_name = "":
 	set = set_selectable
 
-@export var selectable_model = "":
+@export var selectable_model: PackedScene:
 	set = set_selectable_model
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 func set_selectable(value):
 	selectable_name = value

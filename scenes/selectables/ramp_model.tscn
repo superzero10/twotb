@@ -7,7 +7,6 @@
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
-polygon = PackedVector2Array(1, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(0.955847, 0, 0, 0, 0.112228, 0.52598, 0, -0.0739615, 0.798115, 0, 0, 0)

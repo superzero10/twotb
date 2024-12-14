@@ -4,3 +4,6 @@
 
 [node name="Ramp" instance=ExtResource("1_pj5kv")]
 selectable_name = "ramp"
+
+[node name="Label" parent="MarginContainer" index="1"]
+text = "Ramp"
