@@ -30,3 +30,5 @@ func _on_selectables_selectable_model_selected(selectable_model):
 
 func set_selectables_visiblity(visible: bool):
 	selectables.visible = visible
+	if visible == false:
+		draggable_manager.cancel_dragging()

@@ -35,7 +35,11 @@ _subresources={
 "nodes": {
 "PATH:Sphere": {
 "generate/physics": true,
-"physics/mask": 2
+"physics/layer": 0,
+"physics/mask": 0
+},
+"PATH:Spring": {
+"mesh_instance/layers": 0
 }
 }
 }

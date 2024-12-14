@@ -14,13 +14,15 @@ script = ExtResource("1_2l2yr")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 10
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00915527, 0.0329947, 0)
 shape = SubResource("SphereShape3D_or703")
 
-[node name="SelectableManager" parent="." instance=ExtResource("3_adkqv")]
+[node name="SelectableManager" parent="." node_paths=PackedStringArray("togglable_bodies") instance=ExtResource("3_adkqv")]
 model_path = NodePath("../bumper")
+togglable_bodies = [NodePath("../Area3D")]
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
