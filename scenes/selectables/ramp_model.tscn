@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo2lhhpdca1gn"]
+[gd_scene load_steps=3 format=3 uid="uid://bo2lhhpdca1gn"]
 
+[ext_resource type="Script" path="res://scenes/selectables/SelectableModel_script.gd" id="1_5yybr"]
 [ext_resource type="PackedScene" uid="uid://c0g0tf51j2b1m" path="res://assets/ramp_model.glb" id="1_7ik16"]
 
 [node name="RampModel" type="Node3D"]
+script = ExtResource("1_5yybr")
+model_path = NodePath("ramp_model")
 
 [node name="ramp_model" parent="." instance=ExtResource("1_7ik16")]
 transform = Transform3D(-0.1, 0, -8.74227e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, 0, 0)

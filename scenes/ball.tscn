@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://sc7r1jesmv5s"]
+[gd_scene load_steps=4 format=3 uid="uid://c2pb27wmn2m22"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1l720"]
 
@@ -9,6 +9,7 @@
 [node name="Node3D" type="Node3D"]
 
 [node name="ball" type="RigidBody3D" parent="."]
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ball"]
 shape = SubResource("SphereShape3D_1l720")
