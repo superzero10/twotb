@@ -1,9 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnb6jx7ogtqv6"]
+[gd_scene load_steps=5 format=3 uid="uid://dnb6jx7ogtqv6"]
 
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="1_yrt37"]
-[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="2_gqvmu"]
-[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_3vsy7"]
-[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="5_pk5qk"]
+[ext_resource type="PackedScene" uid="uid://d384lf8plmn6t" path="res://scenes/default_stuff.tscn" id="2_hs1ad"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wj53c"]
 size = Vector3(10, 0.5, 10)
@@ -27,14 +25,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.8948, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 omni_range = 10.0
 
-[node name="camera" parent="." instance=ExtResource("2_gqvmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 2.12812, -0.627964)
-
-[node name="GameUi" parent="." node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("4_3vsy7")]
-camera = NodePath("../camera")
-draggable_manager = NodePath("../DraggableManager")
-
-[node name="DraggableManager" parent="." instance=ExtResource("5_pk5qk")]
-
-[connection signal="slow_motion_toggled" from="camera" to="." method="_on_camera_slow_motion_toggled"]
-[connection signal="selectable_model_selected" from="GameUi" to="DraggableManager" method="_on_game_ui_selectable_model_selected"]
+[node name="default_stuff" parent="." instance=ExtResource("2_hs1ad")]
