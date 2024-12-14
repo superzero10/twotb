@@ -2,7 +2,7 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_ejsrj"]
 
-[node name="RampModel" type="Node3D"]
+[node name="BumperModel" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dnb6jx7ogtqv6"]
 
-[ext_resource type="Script" path="res://scenes/test_level.gd" id="1_r2wcc"]
+[ext_resource type="Script" path="res://scripts/level_selectables.gd" id="1_etomn"]
 [ext_resource type="PackedScene" uid="uid://sc7r1jesmv5s" path="res://scenes/ball.tscn" id="1_yrt37"]
 [ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="2_gqvmu"]
 [ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_3vsy7"]
@@ -12,7 +12,7 @@ size = Vector3(10, 0.5, 10)
 size = Vector3(10, 0.5, 10)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_r2wcc")
+script = ExtResource("1_etomn")
 
 [node name="sol" type="StaticBody3D" parent="."]
 
