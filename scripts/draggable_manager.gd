@@ -30,7 +30,6 @@ func start_dragging():
 	add_child(dragged_instance)
 	# If selected model is the Bumper, disable it
 	if dragged_instance.has_method("toggle"):
-		print("INSTANCE IS BUMPER ! - disable")
 		dragged_instance.toggle(false)
 	if mouse_position_3d:
 		dragged_instance.global_transform.origin = mouse_position_3d
@@ -40,7 +39,6 @@ func stop_dragging():
 		dragged_instance.enable_model()
 	# If selected model is the Bumper, enable it
 	if dragged_instance.has_method("toggle"):
-		print("INSTANCE IS BUMPER ! - enable")
 		dragged_instance.toggle(true)
 	dragged_instance = null
 	selectable_model = null
