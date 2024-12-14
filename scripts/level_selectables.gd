@@ -2,7 +2,7 @@ extends Node3D
 
 var selectable_model: PackedScene
 var dragged_instance = null
-var drag_plane = Plane(Vector3.UP, 0)
+var drag_plane = Plane(Vector3.UP, 1)
 
 func _input(event):
 	if event is InputEventMouseButton:
