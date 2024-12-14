@@ -6,6 +6,7 @@
 [node name="Barrier" instance=ExtResource("1_wfbs0")]
 selectable_name = "barrier"
 selectable_model = ExtResource("2_cnkce")
+action_name = "select_barrier"
 
 [node name="Button" parent="MarginContainer" index="0"]
 text = "Barrière"

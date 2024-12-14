@@ -21,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_oo3s1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 alignment = 2
 
