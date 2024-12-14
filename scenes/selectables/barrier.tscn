@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://br4x441ijxdvn"]
+[gd_scene load_steps=3 format=3 uid="uid://br4x441ijxdvn"]
 
 [ext_resource type="PackedScene" uid="uid://c7xt1q81m1k0u" path="res://scenes/selectables/Selectable.tscn" id="1_wfbs0"]
+[ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="2_cnkce"]
 
 [node name="Barrier" instance=ExtResource("1_wfbs0")]
 selectable_name = "barrier"
+selectable_model = ExtResource("2_cnkce")
 
-[node name="Label" parent="MarginContainer" index="1"]
-text = "Barrier"
+[node name="Button" parent="MarginContainer" index="0"]
+text = "Barrière"

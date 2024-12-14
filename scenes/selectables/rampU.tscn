@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqpphne55orj4"]
+
+[ext_resource type="PackedScene" uid="uid://c7xt1q81m1k0u" path="res://scenes/selectables/Selectable.tscn" id="1_avf8u"]
+[ext_resource type="PackedScene" uid="uid://dyyep0ml554pg" path="res://scenes/selectables/rampU_model.tscn" id="2_bqoqu"]
+
+[node name="RampU" instance=ExtResource("1_avf8u")]
+selectable_name = "rampU"
+selectable_model = ExtResource("2_bqoqu")
+
+[node name="Button" parent="MarginContainer" index="0"]
+text = "Rampe (en U)"

@@ -17,10 +17,13 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="Button" type="Button" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Button"]
 layout_mode = 2
+offset_right = 1132.0
+offset_bottom = 628.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="MarginContainer/Button" to="." method="_on_button_pressed"]

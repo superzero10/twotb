@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://62nx7flaua2"]
+[gd_scene load_steps=7 format=3 uid="uid://62nx7flaua2"]
 
 [ext_resource type="Script" path="res://scripts/selectables.gd" id="1_g2v6n"]
 [ext_resource type="PackedScene" uid="uid://dx2f7sdw6jb8" path="res://scenes/selectables/ramp.tscn" id="1_ougi4"]
-[ext_resource type="PackedScene" uid="uid://bo2lhhpdca1gn" path="res://scenes/selectables/ramp_model.tscn" id="2_bb6lt"]
 [ext_resource type="PackedScene" uid="uid://bd3gcydyxpxov" path="res://scenes/selectables/bumper.tscn" id="2_eh5rf"]
+[ext_resource type="PackedScene" uid="uid://dqpphne55orj4" path="res://scenes/selectables/rampU.tscn" id="3_3hvlb"]
 [ext_resource type="PackedScene" uid="uid://br4x441ijxdvn" path="res://scenes/selectables/barrier.tscn" id="3_7aw53"]
-[ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="4_ud2sf"]
-[ext_resource type="PackedScene" uid="uid://d2c0bngruk8sn" path="res://scenes/selectables/bumper_model.tscn" id="6_dpq8u"]
+[ext_resource type="PackedScene" uid="uid://mi2cn5najb0h" path="res://scenes/selectables/fan.tscn" id="8_r0ei8"]
 
 [node name="Selectables" type="PanelContainer"]
 anchors_preset = 15
@@ -26,15 +25,18 @@ columns = 6
 
 [node name="Ramp" parent="GridContainer" instance=ExtResource("1_ougi4")]
 layout_mode = 2
-selectable_model = ExtResource("2_bb6lt")
+
+[node name="RampU" parent="GridContainer" instance=ExtResource("3_3hvlb")]
+layout_mode = 2
 
 [node name="Barrier" parent="GridContainer" instance=ExtResource("3_7aw53")]
 layout_mode = 2
-selectable_model = ExtResource("4_ud2sf")
 
 [node name="Bumper" parent="GridContainer" instance=ExtResource("2_eh5rf")]
 layout_mode = 2
-selectable_model = ExtResource("6_dpq8u")
+
+[node name="Fan" parent="GridContainer" instance=ExtResource("8_r0ei8")]
+layout_mode = 2
 
 [connection signal="selectable_selected" from="GridContainer/Ramp" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Barrier" to="." method="_on_selectable_selected"]
