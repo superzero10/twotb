@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd3gcydyxpxov"]
+
+[ext_resource type="PackedScene" uid="uid://c7xt1q81m1k0u" path="res://scenes/selectables/Selectable.tscn" id="1_ro660"]
+[ext_resource type="PackedScene" uid="uid://d2c0bngruk8sn" path="res://scenes/selectables/bumper_model.tscn" id="2_5u1ja"]
+
+[node name="Bumper" instance=ExtResource("1_ro660")]
+selectable_name = "bumper"
+selectable_model = ExtResource("2_5u1ja")
+action_name = "select_bumper"
+
+[node name="Button" parent="MarginContainer" index="0"]
+text = "Bumper"

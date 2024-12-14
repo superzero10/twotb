@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://caalys3216wq6"]
+
+[ext_resource type="Script" path="res://scripts/draggable_manager.gd" id="1_ujrnp"]
+
+[node name="DraggableManager" type="Node3D"]
+script = ExtResource("1_ujrnp")
