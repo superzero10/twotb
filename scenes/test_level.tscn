@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnb6jx7ogtqv6"]
+[gd_scene load_steps=8 format=3 uid="uid://dnb6jx7ogtqv6"]
 
 [ext_resource type="Script" path="res://scripts/level_selectables.gd" id="1_etomn"]
 [ext_resource type="PackedScene" uid="uid://sc7r1jesmv5s" path="res://scenes/ball.tscn" id="1_yrt37"]
 [ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="2_gqvmu"]
 [ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_3vsy7"]
+[ext_resource type="PackedScene" uid="uid://bo2lhhpdca1gn" path="res://scenes/selectables/ramp_model.tscn" id="5_nixe1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wj53c"]
 size = Vector3(10, 0.5, 10)
@@ -23,7 +24,7 @@ shape = SubResource("BoxShape3D_wj53c")
 mesh = SubResource("BoxMesh_ks2kn")
 
 [node name="ball" parent="." instance=ExtResource("1_yrt37")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 9.29306, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 omni_range = 10.0
@@ -32,5 +33,8 @@ omni_range = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 2.12812, -0.627964)
 
 [node name="GameUi" parent="." instance=ExtResource("4_3vsy7")]
+
+[node name="RampModel" parent="." instance=ExtResource("5_nixe1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [connection signal="selectable_model_selected" from="GameUi" to="." method="_on_game_ui_selectable_model_selected"]
