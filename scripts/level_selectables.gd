@@ -39,18 +39,17 @@ func get_dynamic_plane(ray_origin, ray_direction) -> Plane :
 	var space_state = get_world_3d().direct_space_state
 	var from = ray_origin
 	var to = from + ray_direction * MAX_RAYCAST_DISTANCE
-	const collision_mask = 1 & ~4
+	const collision_mask = 1 & ~2 & ~4
 	# Configurer le RayCast3D pour détecter les objets sous la souris
-	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask, [self, $ball])
+	var query = PhysicsRayQueryParameters3D.create(from, to, collision_mask, [self])
 	query.collide_with_areas = true
-	query.exclude = [self]
 	var collision = space_state.intersect_ray(query)
 
 	if collision:
 		# Obtenir les informations de collision
 		# Définir un nouveau plan basé sur la surface touchée
 		return Plane(collision.normal, collision.position)
-	
+
 	# IMPORTANT : Par défaut, si le Raycast fail, retourne le Plane par défaut (on met l'objet à Y = 0)
 	return DEFAULT_PLANE
 
