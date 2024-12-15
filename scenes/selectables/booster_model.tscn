@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmua73kyvhefx"]
+
+[ext_resource type="Script" path="res://scripts/booster.gd" id="1_10ncj"]
+[ext_resource type="PackedScene" uid="uid://b5vau4exij65o" path="res://assets/rampe_avec_boost.tscn" id="2_178ra"]
+[ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="2_angku"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2sqaf"]
+size = Vector3(8.71051, 5.89855, 14.6931)
+
+[node name="BoosterModel" type="Node3D"]
+script = ExtResource("1_10ncj")
+impulse_force = 75
+
+[node name="rampe avec boost" parent="." instance=ExtResource("2_178ra")]
+transform = Transform3D(0.1, 0, -8.74227e-09, 0, 0.1, 0, -8.74228e-09, 0, -0.1, 0, 0, 0)
+
+[node name="SelectableManager" parent="." instance=ExtResource("2_angku")]
+model_path = NodePath("../rampe avec boost")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 0, 0.291586, 0)
+shape = SubResource("BoxShape3D_2sqaf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_body_exited"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://62nx7flaua2"]
+[gd_scene load_steps=8 format=3 uid="uid://62nx7flaua2"]
 
 [ext_resource type="Script" path="res://scripts/selectables.gd" id="1_g2v6n"]
 [ext_resource type="PackedScene" uid="uid://dx2f7sdw6jb8" path="res://scenes/selectables/ramp_btn.tscn" id="1_ougi4"]
 [ext_resource type="PackedScene" uid="uid://bd3gcydyxpxov" path="res://scenes/selectables/bumper_btn.tscn" id="2_eh5rf"]
 [ext_resource type="PackedScene" uid="uid://dqpphne55orj4" path="res://scenes/selectables/rampU_btn.tscn" id="3_3hvlb"]
 [ext_resource type="PackedScene" uid="uid://br4x441ijxdvn" path="res://scenes/selectables/barrier_btn.tscn" id="3_7aw53"]
+[ext_resource type="PackedScene" uid="uid://o2trfqtk3q8e" path="res://scenes/selectables/booster_btn.tscn" id="7_a1rlk"]
 [ext_resource type="PackedScene" uid="uid://mi2cn5najb0h" path="res://scenes/selectables/fan_btn.tscn" id="8_r0ei8"]
 
 [node name="Selectables" type="PanelContainer"]
@@ -38,8 +39,12 @@ layout_mode = 2
 [node name="Fan" parent="GridContainer" instance=ExtResource("8_r0ei8")]
 layout_mode = 2
 
+[node name="Booster" parent="GridContainer" instance=ExtResource("7_a1rlk")]
+layout_mode = 2
+
 [connection signal="selectable_selected" from="GridContainer/Ramp" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/RampU" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Barrier" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Bumper" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Fan" to="." method="_on_selectable_selected"]
+[connection signal="selectable_selected" from="GridContainer/Booster" to="." method="_on_selectable_selected"]
