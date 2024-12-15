@@ -69,7 +69,6 @@ offset_right = 574.0
 offset_bottom = 148.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "game over"
 label_settings = SubResource("LabelSettings_ob6eq")
 horizontal_alignment = 1
 vertical_alignment = 1

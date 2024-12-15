@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var start_timer_duration: float = 2.0
+@export var start_timer_duration: float = 5.0
 @export var three_star_time: float = 20.0
 @export var two_star_time: float = 40.0
 @export var leaderboard_file: String = "user://leaderboard.save"
@@ -12,7 +12,7 @@ extends Node3D
 @onready var timer_player_label = $Player/GameUi/TimerLabel
 @onready var game_ui = $Player/GameUi
 @onready var camera_control = $Player/camera/CameraControl
-@onready var finish_zone = $FinishZone2
+@onready var finish_zone = $FinishZone
 
 var start_time: int = 0
 var elapsed_time: float = 0.0
@@ -23,32 +23,25 @@ func _ready():
 	# Connexion des signaux
 	if not finish_zone.is_connected("body_entered", Callable(self, "_on_FinishZone_body_entered")):
 		finish_zone.connect("body_entered", Callable(self, "_on_FinishZone_body_entered"))
-
 	if not timer_player.is_connected("timeout", Callable(self, "_on_timer_player_timeout")):
 		timer_player.connect("timeout", Callable(self, "_on_timer_player_timeout"))
-
 	# Initialisation des temporisateurs
 	game_ui.update_timer(start_timer_duration)
 	countdown.wait_time = start_timer_duration
 	countdown.one_shot = true
 	countdown.start()
-
 	# Initialisation de l'interface utilisateur
 	countdown_label.text = str(floor(countdown.time_left))
 	timer_player_label.text = "0.0"
-
 	# Désactiver la balle au départ
 	ball.freeze = true
-
 	# Activer la caméra principale
 	if camera_control is Camera3D:
 		camera_control.make_current()
 	else:
 		print("Erreur : le nœud 'CameraControl' n'est pas une instance de Camera3D.")
-
 	# Charger les scores
 	load_leaderboard()
-
 	# Prévenir les redémarrages multiples
 	await get_tree().create_timer(1.0).timeout
 	can_restart = true
@@ -78,6 +71,14 @@ func _process(delta):
 	if not ball.freeze:
 		elapsed_time += delta
 		timer_player_label.text = str(round_to_decimals(elapsed_time, 1))
+	if ball.global_transform.origin.y < 0:
+		_on_ball_fallen()
+	if not ball.freeze and ball.global_transform.origin.y < 0:
+		_on_ball_fallen()
+
+func _on_ball_fallen():
+	# Afficher l'écran de défaite
+	game_ui.show_game_over("Game Over")
 
 func _on_Countdown_timeout():
 	ball.freeze = false

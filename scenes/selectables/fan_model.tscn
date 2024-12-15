@@ -12,6 +12,7 @@ size = Vector3(1, 2.00989, 2.4856)
 [node name="FanModel" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500732, 0)
 script = ExtResource("1_mdbg5")
+impulse_force = 20
 
 [node name="SelectableManager" parent="." node_paths=PackedStringArray("togglable_bodies") instance=ExtResource("1_eli3e")]
 model_path = NodePath("../ventilo")
