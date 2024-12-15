@@ -23,7 +23,7 @@ func find_static_body(node: Node) -> StaticBody3D:
 			return result
 	return null  # Retourne null si aucun StaticBody3D n'est trouvé
 
-func toggle_body_collision(body: PhysicsBody3D, value: bool):
+func toggle_body_collision(body, value: bool):
 	body.set_collision_layer_value(SELECTABLES_LAYER_INDEX, value)
 	body.set_collision_mask_value(BALL_LAYER_INDEX, value)
 
