@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://chpfyljik3bbg"]
+
+[ext_resource type="PackedScene" uid="uid://6ikb38q1iyg4" path="res://assets/cyberpunk 6.glb" id="1_4go7b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo5i8"]
+albedo_color = Color(0.270222, 0.270222, 0.270222, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ph8s"]
+emission_enabled = true
+emission = Color(1, 0, 1, 1)
+emission_energy_multiplier = 29.99
+
+[node name="cyberpunk 6" instance=ExtResource("1_4go7b")]
+
+[node name="6_001" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wo5i8")
+
+[node name="6_003" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1ph8s")

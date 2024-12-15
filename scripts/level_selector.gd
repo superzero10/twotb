@@ -7,6 +7,8 @@ const LEVEL_SCENES = [
 	"res://scenes/levels/level4.tscn"
 ]
 
+# Code à rentrer dans le menu de sélection des niveaux, un son est émit quand le code est réussivf gc
+# Le code secret, c'est 20231968, les codes des 2 portes de chez la Coloc :D
 const SECRET_CODE_KEYS = ["2","0", "2","3","1","9","6","8"]
 
 @onready var grid_container = $CenterContainer/GridContainer

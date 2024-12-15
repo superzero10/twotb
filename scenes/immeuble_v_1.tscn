@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccmwb07ohgmvx"]
+
+[ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="1_fpsvt"]
+
+[node name="Immeuble V1" instance=ExtResource("1_fpsvt")]

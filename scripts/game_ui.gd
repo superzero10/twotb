@@ -100,4 +100,4 @@ func _on_restart_pressed():
 
 func _on_quit_pressed():
 	# Retourner au menu principal
-	get_tree().change_scene_to_file("res://scenes/LevelSelector.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/LevelSelector.tscn")
