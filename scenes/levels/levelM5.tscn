@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://cky3bcrxcd1ys"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_5qphk"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_hwdul"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="3_en64o"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_7d0ps"]
+[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="5_sqtgc"]
+[ext_resource type="PackedScene" uid="uid://bq60wa3nyhx68" path="res://assets/cyberpunk 1.glb" id="6_dqwp8"]
+[ext_resource type="PackedScene" uid="uid://bl67fweycyu3i" path="res://assets/cyberpunk 2.glb" id="7_ramlm"]
+[ext_resource type="PackedScene" uid="uid://cvhldu3gixjcs" path="res://assets/cyberpunk 2 BIS.glb" id="8_43b8u"]
+[ext_resource type="Texture2D" uid="uid://doqugg60cu6nh" path="res://assets/pics/z9.jpg" id="9_v8dur"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs7h1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x645l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lwyug"]
+size = Vector3(14, 2, 13)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kflt7"]
+points = PackedVector3Array(-7, -1, -6.5, -7, 1, -6.5, 7, -1, -6.5, -7, -1, 6.5, -7, 1, 6.5, 7, 1, -6.5, 7, -1, 6.5, 7, 1, 6.5)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_xtluv"]
+albedo_texture = ExtResource("9_v8dur")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j0emq"]
+material = SubResource("ORMMaterial3D_xtluv")
+
+[node name="LevelM5" type="Node3D"]
+script = ExtResource("1_5qphk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999993, -0.00275678, 0.0026575, 0.000358531, 0.758386, 0.651806, -0.0038123, -0.6518, 0.758381, 0, 26.6836, 11.8052)
+
+[node name="Roofs" type="Node3D" parent="."]
+
+[node name="ball" parent="." instance=ExtResource("2_hwdul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01167, 17.8458, -10.9087)
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102158, 22.9113, -15.6854)
+
+[node name="camera" parent="Player" instance=ExtResource("3_en64o")]
+transform = Transform3D(0.888273, 0, -0.459316, 0, 1, 0, 0.459316, 0, 0.888273, -7.9017, -5.99902, 8.15724)
+
+[node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("4_7d0ps")]
+camera = NodePath("../camera")
+draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraggableManager" parent="Player" instance=ExtResource("5_sqtgc")]
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPlayer" type="Timer" parent="."]
+
+[node name="FinishZone" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, 15.0123, 46.4285, -83.9011)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone"]
+mesh = SubResource("CylinderMesh_rgdc6")
+surface_material_override/0 = SubResource("StandardMaterial3D_qs7h1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("CylinderShape3D_x645l")
+
+[node name="cyberpunk 5" parent="." instance=ExtResource("6_dqwp8")]
+transform = Transform3D(-0.636886, 0, -0.770958, 0.160804, 0.978006, -0.13284, 0.754001, -0.208577, -0.622878, -0.853451, 8.14348, -15.202)
+
+[node name="cyberpunk 4" parent="." instance=ExtResource("7_ramlm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.788, 39.9606, -88.1753)
+
+[node name="cyberpunk 6" parent="." instance=ExtResource("7_ramlm")]
+transform = Transform3D(0.644164, 0, -0.764888, 0, 1, 0, 0.764888, 0, 0.644164, 11.788, 14.5923, -71.422)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13961, 8.84113, -39.2725)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+mesh = SubResource("BoxMesh_lwyug")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+shape = SubResource("ConvexPolygonShape3D_kflt7")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13961, 16.2236, -55.6299)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+mesh = SubResource("BoxMesh_lwyug")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+shape = SubResource("ConvexPolygonShape3D_kflt7")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9916, 19.9589, -54.1245)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+mesh = SubResource("BoxMesh_lwyug")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31672, 22.0755, -31.0403)
+mesh = SubResource("BoxMesh_lwyug")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+shape = SubResource("ConvexPolygonShape3D_kflt7")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9916, 24.9523, -37.3539)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+mesh = SubResource("BoxMesh_lwyug")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.15179)
+shape = SubResource("ConvexPolygonShape3D_kflt7")
+
+[node name="cyberpunk 1" parent="." instance=ExtResource("6_dqwp8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.1673, 27.5908, -45.5261)
+
+[node name="cyberpunk 2" parent="." instance=ExtResource("6_dqwp8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.8988, 35.3978, -67.2658)
+
+[node name="cyberpunk 3" parent="." instance=ExtResource("6_dqwp8")]
+transform = Transform3D(-0.464533, 0, 0.885556, 0, 1, 0, -0.885556, 0, -0.464533, 45.5796, 35.3978, -78.5803)
+
+[node name="cyberpunk 2 BIS" parent="." instance=ExtResource("8_43b8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.817, 34.327, -58.5324)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.997549, 0, 0.0699653, -0.0243422, 0.937525, -0.347065, -0.0655942, -0.347918, -0.935228, 2.98769, 10.5164, -18.7568)
+mesh = SubResource("QuadMesh_j0emq")
+
+[connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

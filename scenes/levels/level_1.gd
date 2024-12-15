@@ -12,7 +12,7 @@ extends Node3D
 @onready var timer_player_label = $Player/GameUi/TimerLabel
 @onready var game_ui = $Player/GameUi
 @onready var camera_control = $Player/camera/CameraControl
-@onready var finish_zone = $FinishZone2
+@onready var finish_zone = $FinishZone
 
 var start_time: int = 0
 var elapsed_time: float = 0.0
@@ -21,11 +21,14 @@ var can_restart = true
 
 func _ready():
 	# Connexion des signaux
-	if not finish_zone.is_connected("body_entered", Callable(self, "_on_FinishZone_body_entered")):
-		finish_zone.connect("body_entered", Callable(self, "_on_FinishZone_body_entered"))
+	if finish_zone:
+		finish_zone.connect("body_entered", _on_FinishZone_body_entered)
 
-	if not timer_player.is_connected("timeout", Callable(self, "_on_timer_player_timeout")):
-		timer_player.connect("timeout", Callable(self, "_on_timer_player_timeout"))
+	if timer_player:
+		timer_player.connect("timeout", _on_timer_player_timeout)
+
+	if countdown:
+		countdown.connect("timeout", _on_Countdown_timeout)
 
 	# Initialisation des temporisateurs
 	game_ui.update_timer(start_timer_duration)
@@ -65,7 +68,7 @@ func _on_FinishZone_body_entered(body):
 		var stars = calculate_stars(elapsed_time)
 		save_score(elapsed_time)
 		game_ui.show_victory(elapsed_time, stars)
-
+		Global.GameHasFinished = true
 
 func _on_timer_player_timeout():
 	print("TimerPlayer a déclenché un timeout.")

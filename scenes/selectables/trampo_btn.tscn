@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbf2f16dqubqd"]
+
+[ext_resource type="PackedScene" uid="uid://c7xt1q81m1k0u" path="res://scenes/selectables/Selectable.tscn" id="1_c0wke"]
+[ext_resource type="PackedScene" uid="uid://dmua73kyvhefx" path="res://scenes/selectables/booster_model.tscn" id="2_eqfhf"]
+
+[node name="Trampoline" instance=ExtResource("1_c0wke")]
+selectable_name = "trampo"
+selectable_model = ExtResource("2_eqfhf")
+action_name = "select_trampo"
+
+[node name="Button" parent="MarginContainer" index="0"]
+text = "Trampo"

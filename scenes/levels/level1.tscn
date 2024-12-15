@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://voiovrq558iq"]
+[gd_scene load_steps=15 format=3 uid="uid://voiovrq558iq"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_hlxk5"]
 [ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="1_ki607"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="6_oiosl"]
 [ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="7_bpp5d"]
 [ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="8_orfq1"]
+[ext_resource type="Texture2D" uid="uid://cp2qu026yjgbe" path="res://assets/pics/z1.jpg" id="9_cncnm"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
 
@@ -15,6 +16,12 @@
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6o2sa"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_0b73y"]
+albedo_texture = ExtResource("9_cncnm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_5odr8"]
+material = SubResource("ORMMaterial3D_0b73y")
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_hlxk5")
@@ -47,6 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 9.29967, 15.8241)
 [node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("7_bpp5d")]
 camera = NodePath("../camera")
 draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
 
 [node name="DraggableManager" parent="Player" instance=ExtResource("8_orfq1")]
 
@@ -76,6 +84,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone2"]
 shape = SubResource("CylinderShape3D_6o2sa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.180176, 0, 0.983634, 0, 1, 0, -0.983634, 0, 0.180176, 6.60484, 2.71127, 0)
+mesh = SubResource("QuadMesh_5odr8")
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]

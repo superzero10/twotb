@@ -1,0 +1,217 @@
+[gd_scene load_steps=17 format=3 uid="uid://we5qbntskn5"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_dcu03"]
+[ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="2_b7jew"]
+[ext_resource type="PackedScene" uid="uid://cfh25yn2qxdxn" path="res://assets/Immeuble V5.glb" id="3_jeejs"]
+[ext_resource type="PackedScene" uid="uid://ccq223y5g2o4u" path="res://assets/Immeuble V4.glb" id="4_ad3iv"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="5_bln2p"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="6_rnarb"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="7_oqpok"]
+[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="8_38fgl"]
+[ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_e7cjt"]
+[ext_resource type="PackedScene" uid="uid://dmua73kyvhefx" path="res://scenes/selectables/booster_model.tscn" id="10_olerv"]
+[ext_resource type="Texture2D" uid="uid://canhdmtle823u" path="res://assets/pics/z3.jpg" id="11_c2nx2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_513a3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6o2sa"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_8k57k"]
+albedo_texture = ExtResource("11_c2nx2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6aa0m"]
+material = SubResource("ORMMaterial3D_8k57k")
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_dcu03")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.757872, 0.652403, 0, -0.652403, 0.757872, 0, 26.6836, 11.8052)
+
+[node name="Roofs" type="Node3D" parent="."]
+
+[node name="Roof1" parent="Roofs" instance=ExtResource("2_b7jew")]
+transform = Transform3D(-0.573576, 0, -0.819152, 0, 1, 0, 0.819152, 0, -0.573576, -17.5032, -0.0554733, -0.128643)
+
+[node name="Roof2" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(-0.529016, 0, -0.848611, 0, 1, 0, 0.848611, 0, -0.529016, 0.0699387, -0.727513, 3.71226)
+
+[node name="Roof3" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(0.570699, 0, 0.821159, 0, 1, 0, -0.821159, 0, 0.570699, -5.34413, -0.118917, 6.13358)
+
+[node name="Roof5" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(0.935394, 0, -0.353606, 0, 1, 0, 0.353606, 0, 0.935394, 18.3268, -0.727512, -17.6705)
+
+[node name="Roof6" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(-0.916586, 0, 0.399837, 0, 1, 0, -0.399837, 0, -0.916586, 12.4312, -0.118918, -17.4819)
+
+[node name="Roof11" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(0.935394, 0, -0.353606, 0, 1, 0, 0.353606, 0, 0.935394, 18.6943, -0.727512, -24.1451)
+
+[node name="Roof12" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(-0.916586, 0, 0.399837, 0, 1, 0, -0.399837, 0, -0.916586, 12.7988, -0.118918, -23.9566)
+
+[node name="Roof7" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(-0.384892, 0, -0.922961, 0, 1, 0, 0.922961, 0, -0.384892, 16.141, -0.727515, -9.72686)
+
+[node name="Roof8" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(0.430464, 0, 0.902608, 0, 1, 0, -0.902608, 0, 0.430464, 10.3084, -0.118917, -10.1211)
+
+[node name="Roof9" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(-0.656993, 0, 0.753896, 0, 1, 0, -0.753896, 0, -0.656993, 8.34497, -0.727513, 3.24848)
+
+[node name="Roof10" parent="Roofs" instance=ExtResource("3_jeejs")]
+transform = Transform3D(0.618559, 0, -0.785738, 0, 1, 0, 0.785738, 0, 0.618559, 8.18746, -0.118917, -3.40562)
+
+[node name="Roof4" parent="Roofs" instance=ExtResource("4_ad3iv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4945, -0.0568237, -36.7081)
+
+[node name="ball" parent="." instance=ExtResource("5_bln2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.147, 13.1583, 3.38223)
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="camera" parent="Player" instance=ExtResource("6_rnarb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 9.29967, 15.8241)
+
+[node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("7_oqpok")]
+camera = NodePath("../camera")
+draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraggableManager" parent="Player" instance=ExtResource("8_38fgl")]
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPlayer" type="Timer" parent="."]
+
+[node name="FinishZone" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, 18.0775, 6.11693, -40.65)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone"]
+mesh = SubResource("CylinderMesh_t3nan")
+surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("CylinderShape3D_6o2sa")
+
+[node name="BarrierModel" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5282, 4.91319, -6.09435)
+
+[node name="BarrierModel2" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3912, 4.91319, -6.09435)
+
+[node name="BarrierModel3" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1723, 4.91319, -6.09435)
+
+[node name="BarrierModel4" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9531, 4.91319, -6.09435)
+
+[node name="BarrierModel8" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.1873, 4.91319, 0.226035)
+
+[node name="BarrierModel9" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2097, 4.91319, -0.910744)
+
+[node name="BarrierModel10" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2338, 4.91319, -2.1294)
+
+[node name="BarrierModel11" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2579, 4.91319, -3.34838)
+
+[node name="BarrierModel12" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.1873, 4.91319, 6.18651)
+
+[node name="BarrierModel13" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2097, 4.91319, 5.04973)
+
+[node name="BarrierModel14" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2338, 4.91319, 3.83108)
+
+[node name="BarrierModel15" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2579, 4.91319, 2.6121)
+
+[node name="BarrierModel16" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -15.9927, 4.91319, 6.5286)
+
+[node name="BarrierModel17" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -17.1297, 4.91319, 6.52527)
+
+[node name="BarrierModel18" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -18.3486, 4.91319, 6.52169)
+
+[node name="BarrierModel19" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -19.5678, 4.91319, 6.51812)
+
+[node name="BarrierModel5" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3333, 4.91319, -2.88422)
+
+[node name="BarrierModel6" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2418, 4.91319, -2.88422)
+
+[node name="BarrierModel7" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8855, 4.91319, -2.88422)
+
+[node name="BarrierModel20" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0651942, 0, 0.997873, 0, 1, 0, -0.997873, 0, -0.0651942, 12, 5.46201, -34)
+
+[node name="BarrierModel21" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0651942, 0, 0.997873, 0, 1, 0, -0.997873, 0, -0.0651942, 12.0781, 5.46201, -33.0692)
+
+[node name="BarrierModel22" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0651942, 0, 0.997873, 0, 1, 0, -0.997873, 0, -0.0651942, 11.8533, 5.46201, -35.841)
+
+[node name="BarrierModel23" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(-0.0651942, 0, 0.997873, 0, 1, 0, -0.997873, 0, -0.0651942, 11.9314, 5.46201, -34.9102)
+
+[node name="BarrierModel24" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 12.6653, 5.46201, -38.7958)
+
+[node name="BarrierModel25" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 11.8505, 5.46201, -38.3391)
+
+[node name="BarrierModel26" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 14.2802, 5.46201, -39.692)
+
+[node name="BarrierModel27" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 13.4653, 5.46201, -39.2353)
+
+[node name="BarrierModel28" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 16.4872, 5.46201, -41.1819)
+
+[node name="BarrierModel29" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 15.6723, 5.46201, -40.7252)
+
+[node name="BarrierModel30" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 18.102, 5.46201, -42.0781)
+
+[node name="BarrierModel31" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.881213, 0, 0.47272, 0, 1, 0, -0.47272, 0, 0.881213, 17.2872, 5.46201, -41.6214)
+
+[node name="BarrierModel32" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.506245, 0, -0.86239, 0, 1, 0, 0.86239, 0, 0.506245, 20.2676, 5.46201, -40.4645)
+
+[node name="BarrierModel33" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.506245, 0, -0.86239, 0, 1, 0, 0.86239, 0, 0.506245, 19.7799, 5.46201, -41.2612)
+
+[node name="BarrierModel34" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.506245, 0, -0.86239, 0, 1, 0, 0.86239, 0, 0.506245, 21.2252, 5.46201, -38.8853)
+
+[node name="BarrierModel35" parent="." instance=ExtResource("9_e7cjt")]
+transform = Transform3D(0.506245, 0, -0.86239, 0, 1, 0, 0.86239, 0, 0.506245, 20.7375, 5.46201, -39.6819)
+
+[node name="BoosterModel" parent="." instance=ExtResource("10_olerv")]
+transform = Transform3D(-0.997819, 0, -0.0660126, 0, 1, 0, 0.0660126, 0, -0.997819, 19, 4.42972, -25.4016)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.999581, 0, -0.0289335, 0, 1, 0, 0.0289335, 0, -0.999581, -14.0323, 2.7789, -3.36188)
+mesh = SubResource("QuadMesh_6aa0m")
+
+[connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
+[connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]
+[connection signal="timeout" from="TimerPlayer" to="." method="_on_timer_player_timeout"]

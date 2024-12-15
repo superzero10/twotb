@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc6v4neelh6ga"]
+
+[ext_resource type="Script" path="res://scripts/level_selector.gd" id="1_u41co"]
+
+[sub_resource type="Environment" id="Environment_4ab1b"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 0.95
+glow_blend_mode = 0
+
+[node name="LevelSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u41co")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Button1" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Button2" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Button3" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="Button4" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Button5" type="Button" parent="CenterContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "5"
+
+[node name="Button6" type="Button" parent="CenterContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "6"
+
+[node name="ButtonReturn" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "<"
+
+[node name="SecretLevelsButton" type="Button" parent="."]
+visible = false
+modulate = Color(0.272, 2.50997, 14.595, 1)
+clip_contents = true
+layout_direction = 2
+layout_mode = 2
+offset_left = 795.0
+offset_top = 296.0
+offset_right = 931.0
+offset_bottom = 428.0
+text = ">
+"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4ab1b")
+
+[connection signal="pressed" from="CenterContainer/GridContainer/ButtonReturn" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="SecretLevelsButton" to="." method="_on_secret_levels_button_pressed"]

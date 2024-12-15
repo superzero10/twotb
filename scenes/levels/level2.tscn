@@ -1,0 +1,162 @@
+[gd_scene load_steps=16 format=3 uid="uid://c5ilqkb37jfaf"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_n44eb"]
+[ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="2_ig573"]
+[ext_resource type="PackedScene" uid="uid://cfh25yn2qxdxn" path="res://assets/Immeuble V5.glb" id="3_2i5js"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="5_0sned"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="6_al78f"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="7_rux8p"]
+[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="8_ixsy1"]
+[ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_66p46"]
+[ext_resource type="PackedScene" uid="uid://c1iu0xl3okh25" path="res://assets/cyberpunk 7.glb" id="9_mq4y4"]
+[ext_resource type="Texture2D" uid="uid://b65o1ejpjx5vv" path="res://assets/pics/z2.jpg" id="10_r44bw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_513a3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6o2sa"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_dpajb"]
+albedo_texture = ExtResource("10_r44bw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_x23rt"]
+material = SubResource("ORMMaterial3D_dpajb")
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_n44eb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.757872, 0.652403, 0, -0.652403, 0.757872, 0, 26.6836, 11.8052)
+
+[node name="Roofs" type="Node3D" parent="."]
+
+[node name="Roof1" parent="Roofs" instance=ExtResource("2_ig573")]
+transform = Transform3D(-0.573576, 0, -0.819152, 0, 1, 0, 0.819152, 0, -0.573576, -17.5032, 21.2975, -0.128643)
+
+[node name="Roof2" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(-0.529016, 0, -0.848611, 0, 1, 0, 0.848611, 0, -0.529016, 0.0699387, 14.4253, 3.71226)
+
+[node name="Roof3" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(0.570699, 0, 0.821159, 0, 1, 0, -0.821159, 0, 0.570699, -7.24368, 16.7512, 6.13358)
+
+[node name="Roof5" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(0.935394, 0, -0.353606, 0, 1, 0, 0.353606, 0, 0.935394, -18.5117, -0.727512, -17.6705)
+
+[node name="Roof6" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(-0.916586, 0, 0.399837, 0, 1, 0, -0.399837, 0, -0.916586, -9.54819, -0.118918, -14.8084)
+
+[node name="Roof12" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(-0.916586, 0, 0.399837, 0, 1, 0, -0.399837, 0, -0.916586, 3.72506, 0.216887, -14.6831)
+
+[node name="Roof7" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(-0.538359, 0, 0.842715, 0, 1, 0, -0.842715, 0, -0.538359, 9.12527, 6.18597, -4.24491)
+
+[node name="Roof8" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(0.430464, 0, 0.902608, 0, 1, 0, -0.902608, 0, 0.430464, -8.9581, 7.10553, -10.1211)
+
+[node name="Roof9" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(-0.656993, 0, 0.753896, 0, 1, 0, -0.753896, 0, -0.656993, 8.20053, 10.6197, 3.22534)
+
+[node name="Roof10" parent="Roofs" instance=ExtResource("3_2i5js")]
+transform = Transform3D(0.618559, 0, -0.785738, 0, 1, 0, 0.785738, 0, 0.618559, 0.779154, 7.36234, -3.40562)
+
+[node name="BarrierModel" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5282, 26.2661, -6.09435)
+
+[node name="BarrierModel2" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3912, 26.2661, -6.09435)
+
+[node name="BarrierModel3" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1723, 26.2661, -6.09435)
+
+[node name="BarrierModel4" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9531, 26.2661, -6.09435)
+
+[node name="BarrierModel8" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.1873, 26.2661, 0.226035)
+
+[node name="BarrierModel9" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2097, 26.2661, -0.910744)
+
+[node name="BarrierModel10" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2338, 26.2661, -2.1294)
+
+[node name="BarrierModel11" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2579, 26.2661, -3.34838)
+
+[node name="BarrierModel12" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.1873, 26.2661, 6.18651)
+
+[node name="BarrierModel13" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2097, 26.2661, 5.04973)
+
+[node name="BarrierModel14" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2338, 26.2661, 3.83108)
+
+[node name="BarrierModel15" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.0197733, 0, 0.999804, 0, 1, 0, -0.999804, 0, -0.0197733, -21.2579, 26.2661, 2.6121)
+
+[node name="BarrierModel16" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -15.9927, 26.2661, 6.5286)
+
+[node name="BarrierModel17" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -17.1297, 26.2661, 6.52527)
+
+[node name="BarrierModel18" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -18.3486, 26.2661, 6.52169)
+
+[node name="BarrierModel19" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(-0.999996, 0, 0.0029321, 0, 1, 0, -0.0029321, 0, -0.999996, -19.5678, 26.2661, 6.51812)
+
+[node name="BarrierModel5" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3333, 26.2661, -2.88422)
+
+[node name="BarrierModel6" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2418, 26.2661, -2.88422)
+
+[node name="BarrierModel7" parent="Roofs" instance=ExtResource("9_66p46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8855, 26.2661, -2.88422)
+
+[node name="ball" parent="." instance=ExtResource("5_0sned")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.147, 29.8058, 3.38223)
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="camera" parent="Player" instance=ExtResource("6_al78f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 9.29967, 15.8241)
+
+[node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("7_rux8p")]
+camera = NodePath("../camera")
+draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraggableManager" parent="Player" instance=ExtResource("8_ixsy1")]
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPlayer" type="Timer" parent="."]
+
+[node name="FinishZone" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, -20.311, 6.11693, -19.1107)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone"]
+mesh = SubResource("CylinderMesh_t3nan")
+surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("CylinderShape3D_6o2sa")
+
+[node name="cyberpunk 7" parent="." instance=ExtResource("9_mq4y4")]
+transform = Transform3D(0.859062, 0.0468713, 0.509721, -0.0248282, 0.998442, -0.0499671, -0.511269, 0.0302694, 0.858888, -11.6917, 6.11393, -4.78551)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.466124, 0, 0.884719, 0, 1, 0, -0.884719, 0, 0.466124, 10.3428, 12.5254, 5.68641)
+mesh = SubResource("QuadMesh_x23rt")
+
+[connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
+[connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]
+[connection signal="timeout" from="TimerPlayer" to="." method="_on_timer_player_timeout"]

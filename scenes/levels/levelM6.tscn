@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://bgsvmxn22ufph"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_xuv3p"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_0hd2o"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="3_17dm1"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_y8jpf"]
+[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="5_c07pq"]
+[ext_resource type="PackedScene" uid="uid://bq60wa3nyhx68" path="res://assets/cyberpunk 1.glb" id="6_e051b"]
+[ext_resource type="PackedScene" uid="uid://bl67fweycyu3i" path="res://assets/cyberpunk 2.glb" id="7_i2hh2"]
+[ext_resource type="Texture2D" uid="uid://dibqo7o6cyb6t" path="res://assets/pics/z10.jpg" id="8_jmbv2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs7h1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x645l"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ai0wr"]
+albedo_texture = ExtResource("8_jmbv2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_sinpm"]
+material = SubResource("ORMMaterial3D_ai0wr")
+
+[node name="LevelM6" type="Node3D"]
+script = ExtResource("1_xuv3p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999993, -0.00275678, 0.0026575, 0.000358531, 0.758386, 0.651806, -0.0038123, -0.6518, 0.758381, 0, 26.6836, 11.8052)
+
+[node name="Roofs" type="Node3D" parent="."]
+
+[node name="ball" parent="." instance=ExtResource("2_0hd2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01167, 50.9366, -10.9087)
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102158, 22.9113, -15.6854)
+
+[node name="camera" parent="Player" instance=ExtResource("3_17dm1")]
+transform = Transform3D(0.888273, 0, -0.459316, 0, 1, 0, 0.459316, 0, 0.888273, -7.9017, 27.0918, 8.15724)
+
+[node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("4_y8jpf")]
+camera = NodePath("../camera")
+draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraggableManager" parent="Player" instance=ExtResource("5_c07pq")]
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPlayer" type="Timer" parent="."]
+
+[node name="FinishZone" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, 15.2044, 21.5249, -84.0896)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone"]
+mesh = SubResource("CylinderMesh_rgdc6")
+surface_material_override/0 = SubResource("StandardMaterial3D_qs7h1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("CylinderShape3D_x645l")
+
+[node name="cyberpunk 5" parent="." instance=ExtResource("6_e051b")]
+transform = Transform3D(-0.636886, 0, -0.770958, 0.160804, 0.978006, -0.13284, 0.754001, -0.208577, -0.622878, -0.853451, 41.2343, -15.202)
+
+[node name="cyberpunk 2" parent="." instance=ExtResource("7_i2hh2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.610462, 14.5923, -80.3113)
+
+[node name="cyberpunk 3" parent="." instance=ExtResource("7_i2hh2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.610462, 14.5923, -91.24)
+
+[node name="cyberpunk 4" parent="." instance=ExtResource("7_i2hh2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.788, 14.5923, -88.1753)
+
+[node name="cyberpunk 6" parent="." instance=ExtResource("7_i2hh2")]
+transform = Transform3D(0.644164, 0, -0.764888, 0, 1, 0, 0.764888, 0, 0.644164, 11.788, 14.5923, -71.422)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.436676, 0, 0.899619, 0, 1, 0, -0.899619, 0, -0.436676, 15.7442, 17.994, -85.904)
+mesh = SubResource("QuadMesh_sinpm")
+
+[connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

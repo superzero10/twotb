@@ -1,0 +1,168 @@
+[gd_scene load_steps=18 format=3 uid="uid://dj6m60f7fcnaw"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_6hxau"]
+[ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="2_8fcfi"]
+[ext_resource type="PackedScene" uid="uid://cfh25yn2qxdxn" path="res://assets/Immeuble V5.glb" id="3_chfe6"]
+[ext_resource type="PackedScene" uid="uid://ccq223y5g2o4u" path="res://assets/Immeuble V4.glb" id="4_vct4q"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="5_aoosf"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="6_t5d0k"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="7_govob"]
+[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="8_70vgy"]
+[ext_resource type="PackedScene" uid="uid://ojpgh7ohaqu4" path="res://assets/Immeuble V6.glb" id="8_vl50u"]
+[ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_g7ex4"]
+[ext_resource type="PackedScene" uid="uid://dmua73kyvhefx" path="res://scenes/selectables/booster_model.tscn" id="10_4o6j1"]
+[ext_resource type="Texture2D" uid="uid://b3nlpfj4268lo" path="res://assets/pics/z4.jpg" id="12_sbhdq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_513a3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6o2sa"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_3fksc"]
+albedo_texture = ExtResource("12_sbhdq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_fkboy"]
+material = SubResource("ORMMaterial3D_3fksc")
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_6hxau")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.757872, 0.652403, 0, -0.652403, 0.757872, 0, 26.6836, 11.8052)
+
+[node name="ball" parent="." instance=ExtResource("5_aoosf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65337, 32.2362, 4.59585)
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="camera" parent="Player" instance=ExtResource("6_t5d0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 9.29967, 15.8241)
+
+[node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("7_govob")]
+camera = NodePath("../camera")
+draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraggableManager" parent="Player" instance=ExtResource("8_70vgy")]
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPlayer" type="Timer" parent="."]
+
+[node name="FinishZone" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, 71.6859, 6.11693, -27.5928)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone"]
+mesh = SubResource("CylinderMesh_t3nan")
+surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("CylinderShape3D_6o2sa")
+
+[node name="Immeuble V4" parent="." instance=ExtResource("4_vct4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.8373, 0, -27.0292)
+
+[node name="Immeuble V5" parent="." instance=ExtResource("3_chfe6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64142, 20.1456, 5.43029)
+
+[node name="Immeuble V6" parent="." instance=ExtResource("8_vl50u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.736, 17.8112, -0.916666)
+
+[node name="Immeuble V1" parent="." instance=ExtResource("2_8fcfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.10197, 17.6836, -8.52198)
+
+[node name="Immeuble V7" parent="." instance=ExtResource("4_vct4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.5199, 12.4197, 23.1407)
+
+[node name="Immeuble V8" parent="." instance=ExtResource("4_vct4q")]
+transform = Transform3D(-0.985423, 0, 0.170124, 0, 1, 0, -0.170124, 0, -0.985423, 45.5687, 12.4197, 23.1407)
+
+[node name="BarrierModel" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 43.3633, 18, 28.7341)
+
+[node name="BarrierModel2" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 44.3465, 18, 28.2988)
+
+[node name="BarrierModel3" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 45.3262, 18, 27.9524)
+
+[node name="BarrierModel4" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 46.3093, 18, 27.517)
+
+[node name="BarrierModel5" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 47.5223, 18, 26.9161)
+
+[node name="BarrierModel6" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 48.5055, 18, 26.4807)
+
+[node name="BarrierModel7" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 49.4851, 18, 26.1343)
+
+[node name="BarrierModel8" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.926522, 0, 0.37624, 0, 1, 0, -0.37624, 0, 0.926522, 50.4683, 18, 25.699)
+
+[node name="BarrierModel9" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.281018, 0, -0.959702, 0, 1, 0, 0.959702, 0, 0.281018, 31.2742, 18, 23.3625)
+
+[node name="BarrierModel10" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.281018, 0, -0.959702, 0, 1, 0, 0.959702, 0, 0.281018, 31.6083, 18, 24.3845)
+
+[node name="BarrierModel11" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.281018, 0, -0.959702, 0, 1, 0, 0.959702, 0, 0.281018, 31.8543, 18, 25.3941)
+
+[node name="BarrierModel12" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.281018, 0, -0.959702, 0, 1, 0, 0.959702, 0, 0.281018, 32.1884, 18, 26.416)
+
+[node name="BarrierModel13" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.927275, 0, -0.37438, 0, 1, 0, 0.37438, 0, 0.927275, 34.6037, 18, 27.4245)
+
+[node name="BarrierModel14" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.927275, 0, -0.37438, 0, 1, 0, 0.37438, 0, 0.927275, 35.6128, 18, 27.7958)
+
+[node name="BarrierModel15" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.927275, 0, -0.37438, 0, 1, 0, 0.37438, 0, 0.927275, 36.5575, 18, 28.2286)
+
+[node name="BarrierModel16" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.927275, 0, -0.37438, 0, 1, 0, 0.37438, 0, 0.927275, 37.5666, 18, 28.6)
+
+[node name="BoosterModel" parent="." instance=ExtResource("10_4o6j1")]
+transform = Transform3D(-0.896123, 0, 0.443806, 0, 1, 0, -0.443806, 0, -0.896123, 50.8745, 17.8265, 20.1041)
+impulse_force = 100
+
+[node name="BoosterModel2" parent="." instance=ExtResource("10_4o6j1")]
+transform = Transform3D(-0.896123, 0, 0.443806, 0, 1, 0, -0.443806, 0, -0.896123, 50.2285, 17.8265, 19.7993)
+impulse_force = 100
+
+[node name="BoosterModel3" parent="." instance=ExtResource("10_4o6j1")]
+transform = Transform3D(-0.896123, 0, 0.443806, 0, 1, 0, -0.443806, 0, -0.896123, 49.601, 17.8265, 19.531)
+impulse_force = 100
+
+[node name="BarrierModel17" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.815097, 0, 0.579324, 0, 1, 0, -0.579324, 0, 0.815097, -2, 22.6519, -16)
+
+[node name="BarrierModel18" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.815097, 0, 0.579324, 0, 1, 0, -0.579324, 0, 0.815097, -2.76043, 22.6519, -15.4756)
+
+[node name="BarrierModel19" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.815097, 0, 0.579324, 0, 1, 0, -0.579324, 0, 0.815097, -3.64268, 22.6519, -14.7835)
+
+[node name="BarrierModel20" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.815097, 0, 0.579324, 0, 1, 0, -0.579324, 0, 0.815097, -4.40312, 22.6519, -14.2591)
+
+[node name="BarrierModel21" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.815097, 0, 0.579324, 0, 1, 0, -0.579324, 0, 0.815097, -5.33275, 22.6519, -13.6845)
+
+[node name="BarrierModel22" parent="." instance=ExtResource("9_g7ex4")]
+transform = Transform3D(0.815097, 0, 0.579324, 0, 1, 0, -0.579324, 0, 0.815097, -6.09318, 22.6519, -13.1602)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0102799, 0, 0.999947, 0, 1, 0, -0.999947, 0, 0.0102799, 51.6378, 15.4943, 23.5485)
+mesh = SubResource("QuadMesh_fkboy")
+
+[connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
+[connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]
+[connection signal="timeout" from="TimerPlayer" to="." method="_on_timer_player_timeout"]
