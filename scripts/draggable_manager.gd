@@ -24,23 +24,23 @@ func _input(event):
 			dragged_instance.global_transform.origin = mouse_position_3d
 
 func start_dragging():
-	var mouse_position_3d = get_mouse_position_on_plane()
-	if dragged_instance.has_method("disable_model"):
-		dragged_instance.disable_model()
+	var selectable_manager = dragged_instance.get_node("SelectableManager")
+	if selectable_manager and selectable_manager.has_method("disable_model"):
+		selectable_manager.disable_model()
 	add_child(dragged_instance)
 	# If selected model is the Bumper, disable it
 	if dragged_instance.has_method("toggle"):
-		print("INSTANCE IS BUMPER ! - disable")
 		dragged_instance.toggle(false)
+	var mouse_position_3d = get_mouse_position_on_plane()
 	if mouse_position_3d:
 		dragged_instance.global_transform.origin = mouse_position_3d
 
 func stop_dragging():
-	if dragged_instance.has_method("enable_model"):
-		dragged_instance.enable_model()
+	var selectable_manager = dragged_instance.get_node("SelectableManager")
+	if selectable_manager and selectable_manager.has_method("enable_model"):
+		selectable_manager.enable_model()
 	# If selected model is the Bumper, enable it
 	if dragged_instance.has_method("toggle"):
-		print("INSTANCE IS BUMPER ! - enable")
 		dragged_instance.toggle(true)
 	dragged_instance = null
 	selectable_model = null

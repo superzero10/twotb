@@ -1,14 +1,8 @@
 extends Node3D
 
-@export var impulse_force = 100:
-	set = set_impulse_force
+@export var impulse_force = 10
 
 @onready var area_3d = $Area3D
-
-func set_impulse_force(value):
-	impulse_force = value
-	if not is_inside_tree():
-		await ready
 
 func _on_area_3d_body_entered(body):
 	if body is RigidBody3D:
@@ -16,9 +10,10 @@ func _on_area_3d_body_entered(body):
 		var bumper_position = global_transform.origin
 		var body_position = body.global_transform.origin
 		var direction = (body_position - bumper_position).normalized()
+		var impulse = direction * impulse_force
 
 		# Appliquer une impulsion
-		body.apply_impulse(bumper_position, direction * impulse_force)
+		body.apply_central_impulse(impulse)
 
 func toggle(newActive: bool):
 	area_3d.set_monitoring(newActive)

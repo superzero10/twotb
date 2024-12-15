@@ -34,6 +34,7 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Cube": {
+"import/skip_import": true,
 "mesh_instance/layers": 0
 },
 "PATH:Cube_001": {
@@ -41,7 +42,14 @@ _subresources={
 "physics/layer": 8,
 "physics/mask": 0
 },
+"PATH:Empty": {
+"import/skip_import": true
+},
+"PATH:Lowpoly concrete barriers": {
+"import/skip_import": true
+},
 "PATH:Lowpoly concrete barriers/concrete barriers": {
+"import/skip_import": true,
 "mesh_instance/layers": 0
 }
 }

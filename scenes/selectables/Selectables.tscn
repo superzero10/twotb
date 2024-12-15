@@ -39,5 +39,7 @@ layout_mode = 2
 layout_mode = 2
 
 [connection signal="selectable_selected" from="GridContainer/Ramp" to="." method="_on_selectable_selected"]
+[connection signal="selectable_selected" from="GridContainer/RampU" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Barrier" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Bumper" to="." method="_on_selectable_selected"]
+[connection signal="selectable_selected" from="GridContainer/Fan" to="." method="_on_selectable_selected"]
