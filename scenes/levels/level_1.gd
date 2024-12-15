@@ -27,9 +27,6 @@ func _ready():
 	if finish_zone:
 		finish_zone.connect("body_entered", _on_FinishZone_body_entered)
 
-	if timer_player:
-		timer_player.connect("timeout", _on_timer_player_timeout)
-
 	if countdown:
 		countdown.connect("timeout", _on_Countdown_timeout)
 
@@ -55,6 +52,8 @@ func _ready():
 	can_restart = true
 
 func pauseMenu():
+	if Global.GameHasFinished:
+		return
 	if Global.GameHasPaused:
 		get_tree().paused = false
 		pause_menu.hide()
@@ -69,7 +68,7 @@ func pauseMenu():
 	Global.GameHasPaused = !Global.GameHasPaused
 
 func _input(event):
-	if event.is_action_pressed("pause") and Global.GameHasFinished == false:
+	if event.is_action_pressed("pause"):
 		pauseMenu()
 	if event.is_action_pressed("restart_level") and can_restart:
 		print("Redémarrage du niveau")
@@ -83,9 +82,6 @@ func _on_FinishZone_body_entered(body):
 		save_score(elapsed_time)
 		game_ui.show_victory(elapsed_time, stars)
 		Global.GameHasFinished = true
-
-func _on_timer_player_timeout():
-	print("TimerPlayer a déclenché un timeout.")
 
 # Reste des fonctions (inchangé)
 func _process(delta):

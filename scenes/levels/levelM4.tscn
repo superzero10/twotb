@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dqlkc1taiqojj"]
+[gd_scene load_steps=23 format=3 uid="uid://dqlkc1taiqojj"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_o14lp"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_gr2nl"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://dmua73kyvhefx" path="res://scenes/selectables/booster_model.tscn" id="12_vmdox"]
 [ext_resource type="Texture2D" uid="uid://dotxm0tsgjswm" path="res://assets/pics/z8.jpg" id="15_4hamq"]
 [ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="16_5ja8m"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="17_gmle5"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
 
@@ -166,5 +167,8 @@ mesh = SubResource("QuadMesh_mnv0v")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_5ja8m")
 autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("17_gmle5")]
+visible = false
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

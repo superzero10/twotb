@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://voiovrq558iq"]
+[gd_scene load_steps=18 format=3 uid="uid://voiovrq558iq"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_hlxk5"]
 [ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="1_ki607"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cp2qu026yjgbe" path="res://assets/pics/z1.jpg" id="9_cncnm"]
 [ext_resource type="AudioStream" uid="uid://dqcsr2oyo4lu0" path="res://assets/sfx/music_chill.mp3" id="10_i3gkh"]
 [ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="11_m7qy6"]
+[ext_resource type="PackedScene" uid="uid://6ikb38q1iyg4" path="res://assets/cyberpunk 6.glb" id="12_1ra8p"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
 
@@ -46,9 +47,7 @@ transform = Transform3D(0.570699, 0, 0.821159, 0, 1, 0, -0.821159, 0, 0.570699, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28238, 0, -23.4494)
 
 [node name="ball" parent="." instance=ExtResource("5_pn8jj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.19735, 10.3445)
-mass = 2.0
-gravity_scale = 1.25
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81752, 7, 11.2366)
 
 [node name="Player" type="Node3D" parent="."]
 
@@ -78,9 +77,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
 shape = SubResource("CylinderShape3D_6o2sa")
 
-[node name="RampModel" parent="." instance=ExtResource("9_2shp3")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.0843759, 4.96538, 9.09572)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.180176, 0, 0.983634, 0, 1, 0, -0.983634, 0, 0.180176, 6.60484, 2.71127, 0)
 mesh = SubResource("QuadMesh_5odr8")
@@ -91,6 +87,9 @@ autoplay = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("11_m7qy6")]
 visible = false
+
+[node name="cyberpunk 6" parent="." instance=ExtResource("12_1ra8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22153, 0, 12.9325)
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]
