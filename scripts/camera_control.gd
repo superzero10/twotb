@@ -7,6 +7,7 @@ signal slow_motion_toggled
 @export var move_speed: float = 10.0
 @export var sprint_multiplier: float = 2.0
 @export var look_sensitivity: float = 0.1
+@export var game_ui: Node  # Référence au GameUI
 
 # Variables pour stocker la rotation
 var rotation_x: float = 0.0
@@ -42,6 +43,9 @@ func _input(event: InputEvent):
 
 # Déplacement et application des rotations
 func _process(delta: float):
+	# Vérifier si la partie est terminée avant de capturer la souris
+	if game_ui != null and game_ui.game_ended:
+		return  # Ne pas capturer la souris si le jeu est terminé
 	# Vérifier si la touche Alt est pressée pour activer ou désactiver le slow motion
 	if Input.is_action_pressed("alt"):
 		if camera_active:  # Si on active le slow motion
@@ -49,6 +53,7 @@ func _process(delta: float):
 	else:
 		if is_slow_motion:  # Si on désactive le slow motion
 			deactivate_slow_motion()
+	
 
 	# Transition vers le slow motion ou retour à la vitesse normale
 	if is_slow_motion:

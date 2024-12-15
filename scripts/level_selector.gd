@@ -1,8 +1,8 @@
 extends Control
 
 const LEVEL_SCENES = [
-	"res://Levels/Level1.tscn",
-	"res://Levels/Level2.tscn",
+	"res://scenes/levels/level1.tscn",
+	"res://scenes/levels/level2.tscn",
 	"res://Levels/Level3.tscn",
 	"res://Levels/Level4.tscn",
 	"res://Levels/Level5.tscn",
@@ -25,4 +25,4 @@ func _on_level_selected(level_index: int):
 
 func _on_return_pressed():
 	# Revenir au menu principal
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")

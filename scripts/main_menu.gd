@@ -12,7 +12,7 @@ func _on_play_pressed():
 
 func _on_options_pressed():
 	# Charger la scène des options
-	get_tree().change_scene_to_file("res://scenes/OptionsPopup.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/OptionsPopup.tscn")
 
 func _on_quit_pressed():
 	# Quitter le jeu

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqsa2qx4sbjpc"]
 
-[ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="1_eli3e"]
+[ext_resource type="PackedScene" path="res://scenes/selectables/SelectableManager.tscn" id="1_eli3e"]
 [ext_resource type="Script" path="res://scripts/fan.gd" id="1_mdbg5"]
 [ext_resource type="PackedScene" uid="uid://bdndsaviieb70" path="res://assets/ventilo.glb" id="3_imro7"]
 

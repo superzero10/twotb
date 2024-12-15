@@ -66,6 +66,17 @@ surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
 shape = SubResource("CylinderShape3D_6o2sa")
 
+[node name="FinishZone2" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, -0.0310006, 4.324, 4.09059)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone2"]
+mesh = SubResource("CylinderMesh_t3nan")
+surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone2"]
+shape = SubResource("CylinderShape3D_6o2sa")
+
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]
 [connection signal="timeout" from="TimerPlayer" to="." method="_on_timer_player_timeout"]

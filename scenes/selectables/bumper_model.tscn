@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/bumper.gd" id="1_2l2yr"]
 [ext_resource type="PackedScene" uid="uid://ca0dbg5moi573" path="res://assets/bumper.glb" id="1_drb1m"]
-[ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="3_adkqv"]
+[ext_resource type="PackedScene" path="res://scenes/selectables/SelectableManager.tscn" id="3_adkqv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_or703"]
 radius = 0.55

@@ -27,4 +27,4 @@ func _on_volume_changed(value: float):
 
 func _on_return_pressed():
 	# Revenir au menu principal
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")

@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var start_timer_duration: float = 5.0
+@export var start_timer_duration: float = 2.0
 @export var three_star_time: float = 20.0
 @export var two_star_time: float = 40.0
 @export var leaderboard_file: String = "user://leaderboard.save"
@@ -12,7 +12,7 @@ extends Node3D
 @onready var timer_player_label = $Player/GameUi/TimerLabel
 @onready var game_ui = $Player/GameUi
 @onready var camera_control = $Player/camera/CameraControl
-@onready var finish_zone = $FinishZone
+@onready var finish_zone = $FinishZone2
 
 var start_time: int = 0
 var elapsed_time: float = 0.0
@@ -63,9 +63,9 @@ func _on_FinishZone_body_entered(body):
 	if body == ball:
 		elapsed_time = (Time.get_ticks_msec() - start_time) / 1000.0
 		var stars = calculate_stars(elapsed_time)
-		game_ui.show_victory(stars, elapsed_time)
 		save_score(elapsed_time)
-		get_tree().reload_current_scene()
+		game_ui.show_victory(elapsed_time, stars)
+
 
 func _on_timer_player_timeout():
 	print("TimerPlayer a déclenché un timeout.")

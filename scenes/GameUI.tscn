@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx77oeigsvi4"]
+[gd_scene load_steps=6 format=3 uid="uid://bx77oeigsvi4"]
 
 [ext_resource type="PackedScene" uid="uid://62nx7flaua2" path="res://scenes/selectables/Selectables.tscn" id="1_1r7di"]
 [ext_resource type="Script" path="res://scripts/game_ui.gd" id="1_oo3s1"]
@@ -9,6 +9,12 @@ font = ExtResource("3_7ucnm")
 font_size = 50
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ob6eq"]
+font = ExtResource("3_7ucnm")
+font_size = 50
+outline_size = 5
+outline_color = Color(0.646029, 0.646029, 0.646029, 1)
 
 [node name="GameUi" type="PanelContainer"]
 anchors_preset = 15
@@ -45,5 +51,110 @@ horizontal_alignment = 1
 layout_mode = 2
 label_settings = SubResource("LabelSettings_n3ci4")
 horizontal_alignment = 1
+
+[node name="DeathScreen" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.5
+offset_right = 574.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "game over"
+label_settings = SubResource("LabelSettings_ob6eq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 51.5
+offset_right = 50.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart
+"
+
+[node name="QuitButton" type="Button" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 91.0
+offset_right = 50.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[node name="VictoryScreen" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="TimeAndStarsLabel" type="Label" parent="VictoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.5
+offset_right = 574.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_ob6eq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="VictoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 51.5
+offset_right = 50.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart
+"
+
+[node name="QuitButton" type="Button" parent="VictoryScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 91.0
+offset_right = 50.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
 
 [connection signal="selectable_model_selected" from="VBoxContainer/Selectables" to="." method="_on_selectables_selectable_model_selected"]
