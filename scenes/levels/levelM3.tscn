@@ -1,0 +1,105 @@
+[gd_scene load_steps=18 format=3 uid="uid://cu5romk4oucj0"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_43372"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="2_4ig66"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_tprpi"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="3_suuip"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_7i5f5"]
+[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="5_c8jyc"]
+[ext_resource type="PackedScene" uid="uid://bq60wa3nyhx68" path="res://assets/cyberpunk 1.glb" id="6_61we2"]
+[ext_resource type="PackedScene" uid="uid://d2c0bngruk8sn" path="res://scenes/selectables/bumper_model.tscn" id="8_pcanr"]
+[ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_sv50j"]
+[ext_resource type="Texture2D" uid="uid://b8fkbvwknis8p" path="res://assets/pics/z7.jpg" id="10_6kct0"]
+[ext_resource type="PackedScene" uid="uid://c34hs3c3xylx" path="res://assets/cyberpunk 3.glb" id="10_o83p4"]
+[ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="11_wk8mw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs7h1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x645l"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_g31o1"]
+albedo_texture = ExtResource("10_6kct0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2cihf"]
+material = SubResource("ORMMaterial3D_g31o1")
+
+[node name="LevelM3" type="Node3D"]
+script = ExtResource("1_43372")
+start_timer_duration = 4.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_4ig66")]
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999993, -0.00275678, 0.0026575, 0.000358531, 0.758386, 0.651806, -0.0038123, -0.6518, 0.758381, 0, 26.6836, 11.8052)
+
+[node name="Roofs" type="Node3D" parent="."]
+
+[node name="ball" parent="." instance=ExtResource("2_tprpi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.56892, 50.9366, -10.9087)
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102158, 22.9113, -15.6854)
+
+[node name="camera" parent="Player" instance=ExtResource("3_suuip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 21.6857, 9.69429)
+
+[node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("4_7i5f5")]
+camera = NodePath("../camera")
+draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraggableManager" parent="Player" instance=ExtResource("5_c8jyc")]
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPlayer" type="Timer" parent="."]
+
+[node name="FinishZone" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, -2.177, 50.7242, -47.1681)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone"]
+mesh = SubResource("CylinderMesh_rgdc6")
+surface_material_override/0 = SubResource("StandardMaterial3D_qs7h1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("CylinderShape3D_x645l")
+
+[node name="cyberpunk 5" parent="." instance=ExtResource("6_61we2")]
+transform = Transform3D(-0.858432, 0, -0.512927, 0, 1, 0, 0.512927, 0, -0.858432, -0.853451, 41.2343, -29.6265)
+
+[node name="cyberpunk 3" parent="." instance=ExtResource("10_o83p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0433, 43.7318, -43.8536)
+
+[node name="cyberpunk 10" parent="." instance=ExtResource("10_o83p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.60619, 43.7318, -9.50674)
+
+[node name="BumperModel" parent="." instance=ExtResource("8_pcanr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32464, 46.203, -36.2869)
+
+[node name="BarrierModel" parent="." instance=ExtResource("9_sv50j")]
+transform = Transform3D(0.469194, 0, 0.883095, 0, 1, 0, -0.883095, 0, 0.469194, -3.58772, 46.203, -32.3533)
+
+[node name="BarrierModel2" parent="." instance=ExtResource("9_sv50j")]
+transform = Transform3D(0.469194, 0, 0.883095, 0, 1, 0, -0.883095, 0, 0.469194, -4.12765, 46.203, -31.2595)
+
+[node name="BarrierModel3" parent="." instance=ExtResource("9_sv50j")]
+transform = Transform3D(0.469194, 0, 0.883095, 0, 1, 0, -0.883095, 0, 0.469194, -4.74151, 46.203, -30.2264)
+
+[node name="BarrierModel4" parent="." instance=ExtResource("9_sv50j")]
+transform = Transform3D(0.469194, 0, 0.883095, 0, 1, 0, -0.883095, 0, 0.469194, -5.4053, 46.203, -29.0568)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.367167, 0, 0.930155, 0, 1, 0, -0.930155, 0, 0.367167, 2.4419, 44.0049, -33.6623)
+mesh = SubResource("QuadMesh_2cihf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_wk8mw")
+autoplay = true
+
+[connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

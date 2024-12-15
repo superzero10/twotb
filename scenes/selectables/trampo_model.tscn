@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqiqtlygn0gtj"]
+
+[ext_resource type="Script" path="res://scripts/trampoline.gd" id="1_1xnva"]
+[ext_resource type="PackedScene" uid="uid://dppx725thcss7" path="res://assets/trampoline.glb" id="3_bogbw"]
+[ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="3_gqtnt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2sqaf"]
+size = Vector3(9.84241, 2.99377, 9.90894)
+
+[node name="TrampolineModel" type="Node3D" groups=["wall"]]
+script = ExtResource("1_1xnva")
+
+[node name="SelectableManager" parent="." instance=ExtResource("3_gqtnt")]
+model_path = NodePath("../trampoline2")
+
+[node name="Area3D" type="Area3D" parent="." groups=["wall"]]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["wall"]]
+transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 1.83154e-05, 0.134927, -1.22134e-05)
+shape = SubResource("BoxShape3D_2sqaf")
+
+[node name="trampoline2" parent="." instance=ExtResource("3_bogbw")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.192115, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

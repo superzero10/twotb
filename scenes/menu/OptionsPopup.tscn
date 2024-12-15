@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/options_popup.gd" id="1_n5qpo"]
 
 [node name="OptionsPopup" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,47 +12,56 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n5qpo")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="resolution" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="resolution" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
-[node name="resolution" type="Label" parent="CenterContainer/VBoxContainer/resolution"]
+[node name="resolution" type="Label" parent="VBoxContainer/resolution"]
 layout_mode = 2
 text = "Résolution"
 
-[node name="OptionButton" type="OptionButton" parent="CenterContainer/VBoxContainer/resolution"]
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/resolution"]
 layout_mode = 2
 
-[node name="fullscreen" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="fullscreen" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/fullscreen"]
+[node name="Label" type="Label" parent="VBoxContainer/fullscreen"]
 layout_mode = 2
 text = "Fullscreen"
 
-[node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer/fullscreen"]
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/fullscreen"]
 layout_mode = 2
 
-[node name="volume" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="volume" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/volume"]
+[node name="Label" type="Label" parent="VBoxContainer/volume"]
 layout_mode = 2
 text = "Volume"
 
-[node name="HSlider" type="HSlider" parent="CenterContainer/VBoxContainer/volume"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/volume"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+max_value = 10.0
+value = 5.0
 
-[node name="return" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="return" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Return"
+size_flags_horizontal = 4
+text = "Apply"
+
+[connection signal="item_selected" from="VBoxContainer/resolution/OptionButton" to="." method="_on_OptionButton_item_selected"]

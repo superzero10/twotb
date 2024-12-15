@@ -13,6 +13,7 @@ extends Node3D
 @onready var game_ui = $Player/GameUi
 @onready var camera_control = $Player/camera/CameraControl
 @onready var finish_zone = $FinishZone
+@onready var pause_menu = $PauseMenu
 
 var start_time: int = 0
 var elapsed_time: float = 0.0
@@ -20,11 +21,14 @@ var leaderboard: Array = []
 var can_restart = true
 
 func _ready():
+	if pause_menu:
+		pause_menu.set_visible(false)
 	# Connexion des signaux
-	if not finish_zone.is_connected("body_entered", Callable(self, "_on_FinishZone_body_entered")):
-		finish_zone.connect("body_entered", Callable(self, "_on_FinishZone_body_entered"))
-	if not timer_player.is_connected("timeout", Callable(self, "_on_timer_player_timeout")):
-		timer_player.connect("timeout", Callable(self, "_on_timer_player_timeout"))
+
+	if finish_zone:
+		finish_zone.connect("body_entered", _on_FinishZone_body_entered)
+	if countdown:
+		countdown.connect("timeout", _on_Countdown_timeout)
 	# Initialisation des temporisateurs
 	game_ui.update_timer(start_timer_duration)
 	countdown.wait_time = start_timer_duration
@@ -46,7 +50,25 @@ func _ready():
 	await get_tree().create_timer(1.0).timeout
 	can_restart = true
 
+func pauseMenu():
+	if Global.GameHasFinished:
+		return
+	if Global.GameHasPaused:
+		get_tree().paused = false
+		pause_menu.hide()
+		Engine.time_scale = 1
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		get_tree().paused = true
+		pause_menu.show()
+		Engine.time_scale = 0
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	Global.GameHasPaused = !Global.GameHasPaused
+
 func _input(event):
+	if event.is_action_pressed("pause"):
+		pauseMenu()
 	if event.is_action_pressed("restart_level") and can_restart:
 		print("Redémarrage du niveau")
 		can_restart = false
@@ -58,10 +80,7 @@ func _on_FinishZone_body_entered(body):
 		var stars = calculate_stars(elapsed_time)
 		save_score(elapsed_time)
 		game_ui.show_victory(elapsed_time, stars)
-
-
-func _on_timer_player_timeout():
-	print("TimerPlayer a déclenché un timeout.")
+		Global.GameHasFinished = true
 
 # Reste des fonctions (inchangé)
 func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://62nx7flaua2"]
+[gd_scene load_steps=10 format=3 uid="uid://62nx7flaua2"]
 
 [ext_resource type="Script" path="res://scripts/selectables.gd" id="1_g2v6n"]
 [ext_resource type="PackedScene" uid="uid://dx2f7sdw6jb8" path="res://scenes/selectables/ramp_btn.tscn" id="1_ougi4"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://br4x441ijxdvn" path="res://scenes/selectables/barrier_btn.tscn" id="3_7aw53"]
 [ext_resource type="PackedScene" uid="uid://o2trfqtk3q8e" path="res://scenes/selectables/booster_btn.tscn" id="7_a1rlk"]
 [ext_resource type="PackedScene" uid="uid://mi2cn5najb0h" path="res://scenes/selectables/fan_btn.tscn" id="8_r0ei8"]
+[ext_resource type="PackedScene" uid="uid://cbf2f16dqubqd" path="res://scenes/selectables/trampo_btn.tscn" id="8_y1epn"]
+[ext_resource type="PackedScene" uid="uid://cqiqtlygn0gtj" path="res://scenes/selectables/trampo_model.tscn" id="9_k4cya"]
 
 [node name="Selectables" type="PanelContainer"]
 anchors_preset = 15
@@ -22,7 +24,7 @@ script = ExtResource("1_g2v6n")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 2
-columns = 6
+columns = 8
 
 [node name="Ramp" parent="GridContainer" instance=ExtResource("1_ougi4")]
 layout_mode = 2
@@ -42,9 +44,14 @@ layout_mode = 2
 [node name="Booster" parent="GridContainer" instance=ExtResource("7_a1rlk")]
 layout_mode = 2
 
+[node name="Trampoline" parent="GridContainer" instance=ExtResource("8_y1epn")]
+layout_mode = 2
+selectable_model = ExtResource("9_k4cya")
+
 [connection signal="selectable_selected" from="GridContainer/Ramp" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/RampU" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Barrier" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Bumper" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Fan" to="." method="_on_selectable_selected"]
 [connection signal="selectable_selected" from="GridContainer/Booster" to="." method="_on_selectable_selected"]
+[connection signal="selectable_selected" from="GridContainer/Trampoline" to="." method="_on_selectable_selected"]

@@ -21,8 +21,6 @@ extends PanelContainer
 
 signal selectable_model_selected
 
-var game_ended = false  # Indique si la partie est terminée
-
 func set_camera_reference(value):
 	camera = value
 	if not is_inside_tree():
@@ -40,23 +38,21 @@ func _ready():
 
 	# Connecter les boutons Restart
 	for restart_button in restart_buttons:
-		restart_button.connect("pressed", Callable(self, "_on_restart_pressed"))
+		restart_button.connect("pressed", _on_restart_pressed)
 
 	# Connecter les boutons Quit
 	for quit_button in quit_buttons:
-		quit_button.connect("pressed", Callable(self, "_on_quit_pressed"))
+		quit_button.connect("pressed", _on_quit_pressed)
 
 	# Si le joueur appuie sur "Alt", la caméra émet un signal "slow_motion_toggled"
 	# On peut afficher ou cacher le menu ici
-	camera.connect("slow_motion_toggled", Callable(self, "set_selectables_visiblity"))
+	camera.connect("slow_motion_toggled", set_selectables_visiblity)
 
 func _on_selectables_selectable_model_selected(selectable_model):
 	selectable_model_selected.emit(selectable_model)
 
 func set_selectables_visiblity(visible: bool):
 	# Ne pas permettre de modifier les sélections ou récupérer la souris si la partie est terminée
-	#if game_ended:
-		#return
 	selectables.visible = visible
 	if not visible:
 		draggable_manager.cancel_dragging()
@@ -82,9 +78,6 @@ func show_victory(stars, time_elapsed):
 	# Cacher le chronomètre
 	$TimerLabel.hide()
 
-	# Marquer la partie comme terminée
-	game_ended = true
-
 func show_game_over(message):
 	# Afficher l'écran de mort
 	$DeathScreen/Label.text = message
@@ -96,9 +89,6 @@ func show_game_over(message):
 	# Cacher le chronomètre
 	$TimerLabel.hide()
 
-	# Marquer la partie comme terminée
-	game_ended = true
-
 # Gestion des boutons
 func _on_restart_pressed():
 	# Recharger la scène actuelle
@@ -106,8 +96,8 @@ func _on_restart_pressed():
 	# Capturer la souris à nouveau
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Réinitialiser l'état de la partie
-	game_ended = false
+	Global.GameHasFinished = false
 
 func _on_quit_pressed():
 	# Retourner au menu principal
-	get_tree().change_scene_to_file("res://scenes/LevelSelector.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/LevelSelector.tscn")

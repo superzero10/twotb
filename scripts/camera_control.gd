@@ -18,7 +18,9 @@ var is_slow_motion = false  # Suivi de l'état du slow motion
 var ball = null
 
 # Facteur de ralentissement
-@export var slow_motion_scale: float = 0.1  # Valeur entre 0.0 et 1.0
+
+@export var slow_motion_scale: float = 0.005  # Valeur entre 0.0 et 1.0
+
 @export var slow_motion_transition_speed: float = 5.0  # Transition vers le slow motion
 @export var stop_transition_speed: float = 9.5  # Transition vers l'arrêt progressif
 
@@ -33,7 +35,7 @@ func _ready():
 
 # Gestion des événements d'entrée (souris pour regarder)
 func _input(event: InputEvent):
-	if ignore_mouse_input and event is InputEventMouseMotion:
+	if Global.GameHasFinished or (ignore_mouse_input and event is InputEventMouseMotion):
 		return
 
 	if camera_active and event is InputEventMouseMotion:
@@ -45,8 +47,8 @@ func _input(event: InputEvent):
 # Déplacement et application des rotations
 func _process(delta: float):
 	# Vérifier si la partie est terminée avant de capturer la souris
-	if game_ui != null and game_ui.game_ended:
-		return  # Ne pas capturer la souris si le jeu est terminé
+	if Global.GameHasFinished:
+		return # Ne pas capturer la souris si le jeu est terminé
 	# Vérifier si la touche Alt est pressée pour activer ou désactiver le slow motion
 	if Input.is_action_pressed("alt"):
 		if camera_active:  # Si on active le slow motion
@@ -54,14 +56,11 @@ func _process(delta: float):
 	else:
 		if is_slow_motion:  # Si on désactive le slow motion
 			deactivate_slow_motion()
-	
-
 	# Transition vers le slow motion ou retour à la vitesse normale
 	if is_slow_motion:
 		Engine.time_scale = lerp(Engine.time_scale, slow_motion_scale, delta * slow_motion_transition_speed)
 	else:
 		Engine.time_scale = lerp(Engine.time_scale, 1.0, delta * slow_motion_transition_speed)
-
 	# Appliquer les mouvements (normaux ou ralentis)
 	if camera_active or is_slow_motion:
 		apply_progressive_movement(delta)

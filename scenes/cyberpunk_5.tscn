@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx01v1akkkm2k"]
+
+[ext_resource type="PackedScene" uid="uid://jckgw6p0dxwq" path="res://assets/cyberpunk 5.glb" id="1_6dd0o"]
+
+[node name="cyberpunk 5" instance=ExtResource("1_6dd0o")]

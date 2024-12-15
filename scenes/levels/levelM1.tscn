@@ -1,0 +1,124 @@
+[gd_scene load_steps=23 format=3 uid="uid://chfws6x05i3f8"]
+
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_ep4ss"]
+[ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="1_ffoea"]
+[ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="2_lycg8"]
+[ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="3_2ftp6"]
+[ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="4_gnlrr"]
+[ext_resource type="PackedScene" uid="uid://bq60wa3nyhx68" path="res://assets/cyberpunk 1.glb" id="5_ojgmh"]
+[ext_resource type="PackedScene" uid="uid://fej617vnou1r" path="res://assets/cyberpunk 2 BIS V2.glb" id="6_l7cr5"]
+[ext_resource type="PackedScene" uid="uid://bl67fweycyu3i" path="res://assets/cyberpunk 2.glb" id="7_p1dkx"]
+[ext_resource type="PackedScene" uid="uid://jckgw6p0dxwq" path="res://assets/cyberpunk 5.glb" id="8_vqpu5"]
+[ext_resource type="PackedScene" uid="uid://6ikb38q1iyg4" path="res://assets/cyberpunk 6.glb" id="9_ukute"]
+[ext_resource type="PackedScene" uid="uid://c1iu0xl3okh25" path="res://assets/cyberpunk 7.glb" id="10_q06jq"]
+[ext_resource type="PackedScene" uid="uid://c34hs3c3xylx" path="res://assets/cyberpunk 3.glb" id="11_xkpoq"]
+[ext_resource type="Texture2D" uid="uid://bsesqtdg3b88i" path="res://assets/pics/z5.jpg" id="13_u7pcy"]
+[ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="14_nb5jt"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="15_rebk4"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs7h1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x645l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yp5wa"]
+size = Vector3(5, 6, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_si2pu"]
+points = PackedVector3Array(-2.5, -3, -0.5, -2.5, -3, 0.5, -2.5, 3, -0.5, 2.5, -3, -0.5, 2.5, -3, 0.5, -2.5, 3, 0.5, 2.5, 3, -0.5, 2.5, 3, 0.5)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_gqoxq"]
+albedo_texture = ExtResource("13_u7pcy")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qyphr"]
+material = SubResource("ORMMaterial3D_gqoxq")
+
+[node name="LevelM1" type="Node3D"]
+script = ExtResource("1_ep4ss")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.757872, 0.652403, 0, -0.652403, 0.757872, 0, 26.6836, 11.8052)
+
+[node name="Roofs" type="Node3D" parent="."]
+
+[node name="ball" parent="." instance=ExtResource("1_ffoea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52179, 53.4348, 6.58024)
+
+[node name="Player" type="Node3D" parent="."]
+
+[node name="camera" parent="Player" instance=ExtResource("2_lycg8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14788, 9.29967, 15.8241)
+
+[node name="GameUi" parent="Player" node_paths=PackedStringArray("camera", "draggable_manager") instance=ExtResource("3_2ftp6")]
+camera = NodePath("../camera")
+draggable_manager = NodePath("../DraggableManager")
+metadata/_edit_use_anchors_ = true
+
+[node name="DraggableManager" parent="Player" instance=ExtResource("4_gnlrr")]
+
+[node name="Countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerPlayer" type="Timer" parent="."]
+
+[node name="FinishZone" type="Area3D" parent="."]
+transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, 4.823, 19.9059, -32.1681)
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone"]
+mesh = SubResource("CylinderMesh_rgdc6")
+surface_material_override/0 = SubResource("StandardMaterial3D_qs7h1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
+shape = SubResource("CylinderShape3D_x645l")
+
+[node name="cyberpunk 1" parent="." instance=ExtResource("5_ojgmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26088, 16.9219, -10.9118)
+
+[node name="cyberpunk 2 BIS V2" parent="." instance=ExtResource("6_l7cr5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1724, 14.2818, -23.441)
+
+[node name="cyberpunk 2" parent="." instance=ExtResource("7_p1dkx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4176, 20.7453, -6.46705)
+
+[node name="cyberpunk 5" parent="." instance=ExtResource("8_vqpu5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7574, 0, -10.8853)
+
+[node name="cyberpunk 6" parent="." instance=ExtResource("9_ukute")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95963, 40.3085, 6.00624)
+
+[node name="cyberpunk 7" parent="." instance=ExtResource("10_q06jq")]
+transform = Transform3D(-0.996639, 0, 0.081921, 0, 1, 0, -0.081921, 0, -0.996639, 16.9243, 13.513, -18.8735)
+
+[node name="cyberpunk 4" parent="." instance=ExtResource("11_xkpoq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.451814, 33.5276, 2.35271)
+
+[node name="cyberpunk 8" parent="." instance=ExtResource("11_xkpoq")]
+transform = Transform3D(0.658072, 0, 0.752955, 0, 1, 0, -0.752955, 0, 0.658072, -0.451814, 27.5276, -6.64729)
+
+[node name="cyberpunk 3" parent="." instance=ExtResource("11_xkpoq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3494, 34.4257, -9.50674)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.932014, -0.362422, 0, 0.362422, 0.932014, -4.24491, 49.5098, 6.67416)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.817135, -0.208917, -0.537256, 0.208917, 0.975981, -0.0617686, 0.537256, -0.0617686, 0.841154, 0, 0, 0)
+mesh = SubResource("BoxMesh_yp5wa")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_si2pu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.912542, 0, 0.408984, 0, 1, 0, -0.408984, 0, 0.912542, -4.75762, 43.5472, 8.18985)
+mesh = SubResource("QuadMesh_qyphr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_nb5jt")
+autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("15_rebk4")]
+
+[connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

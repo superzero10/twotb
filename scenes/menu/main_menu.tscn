@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://g4lrtojkbwb6"]
+[gd_scene load_steps=6 format=3 uid="uid://g4lrtojkbwb6"]
 
 [ext_resource type="FontFile" uid="uid://j4p4e3vjnh4u" path="res://assets/American Captain.otf" id="1_07eyq"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_c1few"]
+[ext_resource type="AudioStream" uid="uid://blmtvrh4ou7n0" path="res://assets/sfx/level_select.wav" id="3_y43b4"]
+[ext_resource type="AudioStream" uid="uid://23lgobqt0d0y" path="res://assets/sfx/tap.wav" id="4_wwqb5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yxni6"]
 font = ExtResource("1_07eyq")
@@ -10,6 +12,7 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,3 +47,16 @@ text = "OPTIONS"
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
+
+[node name="AudioPlayer_select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_y43b4")
+
+[node name="AudioPlayer_tap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wwqb5")
+
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
