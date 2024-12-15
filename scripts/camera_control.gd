@@ -18,7 +18,7 @@ var is_slow_motion = false  # Suivi de l'état du slow motion
 var ball = null
 
 # Facteur de ralentissement
-@export var slow_motion_scale: float = 0.2  # Valeur entre 0.0 et 1.0
+@export var slow_motion_scale: float = 0.1  # Valeur entre 0.0 et 1.0
 @export var slow_motion_transition_speed: float = 5.0  # Transition vers le slow motion
 @export var stop_transition_speed: float = 9.5  # Transition vers l'arrêt progressif
 

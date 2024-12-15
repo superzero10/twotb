@@ -46,7 +46,9 @@ transform = Transform3D(0.570699, 0, 0.821159, 0, 1, 0, -0.821159, 0, 0.570699, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28238, 0, -23.4494)
 
 [node name="ball" parent="." instance=ExtResource("5_pn8jj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.19735, 10.3445)
+mass = 2.0
+gravity_scale = 1.25
 
 [node name="Player" type="Node3D" parent="."]
 
@@ -76,16 +78,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
 shape = SubResource("CylinderShape3D_6o2sa")
 
-[node name="FinishZone2" type="Area3D" parent="."]
-transform = Transform3D(0.843654, 0, 0.536887, 0, 1, 0, -0.536887, 0, 0.843654, -0.0310006, 4.324, 4.09059)
-collision_mask = 2
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="FinishZone2"]
-mesh = SubResource("CylinderMesh_t3nan")
-surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone2"]
-shape = SubResource("CylinderShape3D_6o2sa")
+[node name="RampModel" parent="." instance=ExtResource("9_2shp3")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.0843759, 4.96538, 9.09572)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.180176, 0, 0.983634, 0, 1, 0, -0.983634, 0, 0.180176, 6.60484, 2.71127, 0)

@@ -93,10 +93,8 @@ func show_game_over(message):
 func _on_restart_pressed():
 	# Recharger la scène actuelle
 	get_tree().reload_current_scene()
-
 	# Capturer la souris à nouveau
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
 	# Réinitialiser l'état de la partie
 	Global.GameHasFinished = false
 
