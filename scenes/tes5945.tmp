@@ -33,6 +33,9 @@ omni_range = 10.0
 [node name="BumperModel" parent="." instance=ExtResource("5_j2oak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04938, 0.309287, 3.86056)
 
+[node name="default_stuff" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_d76lt")]
+target = NodePath("../ball")
+
 [node name="FanModel" parent="." instance=ExtResource("4_d03re")]
 transform = Transform3D(-0.400125, 0, 0.916461, 0, 1, 0, -0.916461, 0, -0.400125, 0.693287, 0.790951, -0.723915)
 
@@ -47,5 +50,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16962, 0.25, 1.58567)
 
 [node name="BoosterModel" parent="." instance=ExtResource("8_cwg42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.34834, 0.294123, 3.29102)
-
-[node name="default_stuff" parent="." instance=ExtResource("3_d76lt")]

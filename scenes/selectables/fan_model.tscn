@@ -9,7 +9,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_0mfx6"]
 size = Vector3(1, 2.00989, 2.4856)
 
-[node name="FanModel" type="Node3D"]
+[node name="FanModel" type="Node3D" groups=["wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500732, 0)
 script = ExtResource("1_mdbg5")
 impulse_force = 20
@@ -18,7 +18,7 @@ impulse_force = 20
 model_path = NodePath("../ventilo")
 togglable_bodies = [NodePath("../Area3D")]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367535, 0)
 collision_layer = 0
 collision_mask = 2
@@ -27,16 +27,16 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
 shape = SubResource("CylinderShape3D_yy7yw")
 
-[node name="ventilo" parent="." instance=ExtResource("3_imro7")]
+[node name="ventilo" parent="." groups=["wall"] instance=ExtResource("3_imro7")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.35249, -3.02125, 0.517339)
 metadata/_edit_group_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ventilo"]
+[node name="StaticBody3D" type="StaticBody3D" parent="ventilo" groups=["wall"]]
 transform = Transform3D(1, 0, 0, 0, -0.202087, -0.979368, 0, 0.979368, -0.202087, 1.1846, 7.10343, -3.09007)
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ventilo/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ventilo/StaticBody3D" groups=["wall"]]
 transform = Transform3D(1, 2.30926e-13, 4.66294e-15, 0, 0.965928, 0.258819, 0, -0.25882, 0.965927, -0.186117, 0.706918, 0.590352)
 shape = SubResource("BoxShape3D_0mfx6")
 
