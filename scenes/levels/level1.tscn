@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="11_m7qy6"]
 [ext_resource type="PackedScene" uid="uid://6ikb38q1iyg4" path="res://assets/cyberpunk 6.glb" id="12_1ra8p"]
 
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_513a3"]
@@ -47,7 +48,9 @@ transform = Transform3D(0.570699, 0, 0.821159, 0, 1, 0, -0.821159, 0, 0.570699, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28238, 0, -23.4494)
 
 [node name="ball" parent="." instance=ExtResource("5_pn8jj")]
+
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81752, 7, 11.2366)
+
 
 [node name="Player" type="Node3D" parent="."]
 
@@ -77,6 +80,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_513a3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FinishZone"]
 shape = SubResource("CylinderShape3D_6o2sa")
 
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.180176, 0, 0.983634, 0, 1, 0, -0.983634, 0, 0.180176, 6.60484, 2.71127, 0)
 mesh = SubResource("QuadMesh_5odr8")
@@ -90,6 +94,7 @@ visible = false
 
 [node name="cyberpunk 6" parent="." instance=ExtResource("12_1ra8p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22153, 0, 12.9325)
+
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]

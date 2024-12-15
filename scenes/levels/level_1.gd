@@ -24,12 +24,11 @@ func _ready():
 	if pause_menu:
 		pause_menu.set_visible(false)
 	# Connexion des signaux
+
 	if finish_zone:
 		finish_zone.connect("body_entered", _on_FinishZone_body_entered)
-
 	if countdown:
 		countdown.connect("timeout", _on_Countdown_timeout)
-
 	# Initialisation des temporisateurs
 	game_ui.update_timer(start_timer_duration)
 	countdown.wait_time = start_timer_duration
