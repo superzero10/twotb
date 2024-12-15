@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx77oeigsvi4"]
+[gd_scene load_steps=5 format=3 uid="uid://bx77oeigsvi4"]
 
 [ext_resource type="PackedScene" uid="uid://62nx7flaua2" path="res://scenes/selectables/Selectables.tscn" id="1_1r7di"]
 [ext_resource type="Script" path="res://scripts/game_ui.gd" id="1_oo3s1"]
+[ext_resource type="FontFile" uid="uid://j4p4e3vjnh4u" path="res://assets/American Captain.otf" id="3_7ucnm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3ci4"]
+font = ExtResource("3_7ucnm")
+font_size = 50
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="GameUi" type="PanelContainer"]
 anchors_preset = 15
@@ -19,5 +26,24 @@ alignment = 2
 
 [node name="Selectables" parent="VBoxContainer" instance=ExtResource("1_1r7di")]
 layout_mode = 2
+
+[node name="ChronometerLabel" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_n3ci4")
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_n3ci4")
+horizontal_alignment = 2
+
+[node name="MidLabel" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_n3ci4")
+horizontal_alignment = 1
+
+[node name="CountdownLabel" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_n3ci4")
+horizontal_alignment = 1
 
 [connection signal="selectable_model_selected" from="VBoxContainer/Selectables" to="." method="_on_selectables_selectable_model_selected"]
