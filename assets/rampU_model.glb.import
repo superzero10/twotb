@@ -39,7 +39,7 @@ _subresources={
 },
 "PATH:Cube_001": {
 "generate/physics": true,
-"physics/layer": 0,
+"physics/layer": 8,
 "physics/mask": 0
 },
 "PATH:Empty": {

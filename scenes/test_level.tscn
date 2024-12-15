@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnb6jx7ogtqv6"]
+[gd_scene load_steps=10 format=3 uid="uid://dnb6jx7ogtqv6"]
 
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="1_yrt37"]
 [ext_resource type="PackedScene" uid="uid://cn1imrcyffm5s" path="res://scenes/default_stuff.tscn" id="3_d76lt"]
 [ext_resource type="PackedScene" uid="uid://dqsa2qx4sbjpc" path="res://scenes/selectables/fan_model.tscn" id="4_d03re"]
+[ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="5_07yy5"]
 [ext_resource type="PackedScene" uid="uid://d2c0bngruk8sn" path="res://scenes/selectables/bumper_model.tscn" id="5_j2oak"]
+[ext_resource type="PackedScene" uid="uid://bo2lhhpdca1gn" path="res://scenes/selectables/ramp_model.tscn" id="5_nixe1"]
+[ext_resource type="PackedScene" uid="uid://dyyep0ml554pg" path="res://scenes/selectables/rampU_model.tscn" id="6_fhaw7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wj53c"]
 size = Vector3(10, 0.5, 10)
@@ -34,3 +37,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04938, 0.309287, 3.86056)
 
 [node name="FanModel" parent="." instance=ExtResource("4_d03re")]
 transform = Transform3D(-0.400125, 0, 0.916461, 0, 1, 0, -0.916461, 0, -0.400125, 0.693287, 0.790951, -0.723915)
+
+[node name="BarrierModel" parent="." instance=ExtResource("5_07yy5")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0.263823, 1)
+
+[node name="RampModel" parent="." instance=ExtResource("5_nixe1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61134, 0.222982, 3)
+
+[node name="RampUModel" parent="." instance=ExtResource("6_fhaw7")]
+transform = Transform3D(-0.23694, 0, 0.971524, 0, 1, 0, -0.971524, 0, -0.23694, -2.26105, 0.25, 2.18674)
+
+[node name="BumperModel2" parent="." instance=ExtResource("5_j2oak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.477516, 0.25, 1.58567)

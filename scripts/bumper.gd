@@ -14,7 +14,6 @@ func _on_area_3d_body_entered(body):
 
 		# Appliquer une impulsion
 		body.apply_central_impulse(impulse)
-		#body.apply_impulse(bumper_position, direction * impulse_force)
 
 func toggle(newActive: bool):
 	area_3d.set_monitoring(newActive)

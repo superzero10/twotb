@@ -7,14 +7,6 @@ extends Node3D
 # Stocke les corps entrants pour appliquer l'impulsion constante
 var affected_bodies: Array[PhysicsBody3D] = []
 
-#func _on_area_3d_body_entered(body):
-	#if body is RigidBody3D:
-		## Calculer une direction pour la propulsion
-		#var direction = -transform.basis.z.normalized()
-		#var distance = (body.global_transform.origin - global_transform.origin).length()
-		#var strength = impulse_force / (1.0 + distance)
-		#body.apply_force(direction * strength, Vector3.ZERO)
-
 func _on_body_entered(body: Node):
 	if body is PhysicsBody3D:  # Vérifie que c'est un corps physique
 		affected_bodies.append(body)
