@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://chfws6x05i3f8"]
+[gd_scene load_steps=23 format=3 uid="uid://chfws6x05i3f8"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_ep4ss"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="1_ffoea"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://c1iu0xl3okh25" path="res://assets/cyberpunk 7.glb" id="10_q06jq"]
 [ext_resource type="PackedScene" uid="uid://c34hs3c3xylx" path="res://assets/cyberpunk 3.glb" id="11_xkpoq"]
 [ext_resource type="Texture2D" uid="uid://bsesqtdg3b88i" path="res://assets/pics/z5.jpg" id="13_u7pcy"]
+[ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="14_nb5jt"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="15_rebk4"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
 
@@ -112,5 +114,11 @@ shape = SubResource("ConvexPolygonShape3D_si2pu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.912542, 0, 0.408984, 0, 1, 0, -0.408984, 0, 0.912542, -4.75762, 43.5472, 8.18985)
 mesh = SubResource("QuadMesh_qyphr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_nb5jt")
+autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("15_rebk4")]
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dj6m60f7fcnaw"]
+[gd_scene load_steps=20 format=3 uid="uid://dj6m60f7fcnaw"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_6hxau"]
 [ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="2_8fcfi"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="2_ves32"]
 [ext_resource type="PackedScene" uid="uid://cfh25yn2qxdxn" path="res://assets/Immeuble V5.glb" id="3_chfe6"]
 [ext_resource type="PackedScene" uid="uid://ccq223y5g2o4u" path="res://assets/Immeuble V4.glb" id="4_vct4q"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="5_aoosf"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_g7ex4"]
 [ext_resource type="PackedScene" uid="uid://dmua73kyvhefx" path="res://scenes/selectables/booster_model.tscn" id="10_4o6j1"]
 [ext_resource type="Texture2D" uid="uid://b3nlpfj4268lo" path="res://assets/pics/z4.jpg" id="12_sbhdq"]
+[ext_resource type="AudioStream" uid="uid://dqcsr2oyo4lu0" path="res://assets/sfx/music_chill.mp3" id="13_2kwkf"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
 
@@ -26,8 +28,11 @@ albedo_texture = ExtResource("12_sbhdq")
 [sub_resource type="QuadMesh" id="QuadMesh_fkboy"]
 material = SubResource("ORMMaterial3D_3fksc")
 
-[node name="Level1" type="Node3D"]
+[node name="Level4" type="Node3D"]
 script = ExtResource("1_6hxau")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_ves32")]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.757872, 0.652403, 0, -0.652403, 0.757872, 0, 26.6836, 11.8052)
@@ -162,6 +167,10 @@ transform = Transform3D(0.815097, 0, 0.579324, 0, 1, 0, -0.579324, 0, 0.815097, 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0102799, 0, 0.999947, 0, 1, 0, -0.999947, 0, 0.0102799, 51.6378, 15.4943, 23.5485)
 mesh = SubResource("QuadMesh_fkboy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_2kwkf")
+autoplay = true
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]

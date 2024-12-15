@@ -12,7 +12,8 @@ extends Node3D
 @onready var timer_player_label = $Player/GameUi/TimerLabel
 @onready var game_ui = $Player/GameUi
 @onready var camera_control = $Player/camera/CameraControl
-@onready var finish_zone = $FinishZone
+@onready var finish_zone = $FinishZone2
+@onready var pause_menu = $PauseMenu
 
 var start_time: int = 0
 var elapsed_time: float = 0.0
@@ -20,6 +21,8 @@ var leaderboard: Array = []
 var can_restart = true
 
 func _ready():
+	if pause_menu:
+		pause_menu.set_visible(false)
 	# Connexion des signaux
 	if finish_zone:
 		finish_zone.connect("body_entered", _on_FinishZone_body_entered)
@@ -56,7 +59,23 @@ func _ready():
 	await get_tree().create_timer(1.0).timeout
 	can_restart = true
 
+func pauseMenu():
+	if Global.GameHasPaused:
+		get_tree().paused = false
+		pause_menu.hide()
+		Engine.time_scale = 1
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		get_tree().paused = true
+		pause_menu.show()
+		Engine.time_scale = 0
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	Global.GameHasPaused = !Global.GameHasPaused
+
 func _input(event):
+	if event.is_action_pressed("pause") and Global.GameHasFinished == false:
+		pauseMenu()
 	if event.is_action_pressed("restart_level") and can_restart:
 		print("Redémarrage du niveau")
 		can_restart = false

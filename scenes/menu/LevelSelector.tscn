@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc6v4neelh6ga"]
+[gd_scene load_steps=6 format=3 uid="uid://bc6v4neelh6ga"]
 
 [ext_resource type="Script" path="res://scripts/level_selector.gd" id="1_u41co"]
+[ext_resource type="AudioStream" uid="uid://blmtvrh4ou7n0" path="res://assets/sfx/level_select.wav" id="2_07vfg"]
+[ext_resource type="AudioStream" uid="uid://23lgobqt0d0y" path="res://assets/sfx/tap.wav" id="3_3r24y"]
+[ext_resource type="AudioStream" uid="uid://cuop8twkiul2u" path="res://assets/sfx/secret_menu_unlocked.wav" id="4_2c5ls"]
 
 [sub_resource type="Environment" id="Environment_4ab1b"]
 background_mode = 3
@@ -10,6 +13,7 @@ glow_strength = 0.95
 glow_blend_mode = 0
 
 [node name="LevelSelector" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,5 +80,22 @@ text = ">
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4ab1b")
 
+[node name="AudioStreamPlayer_select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_07vfg")
+
+[node name="AudioStreamPlayer_tap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3r24y")
+
+[node name="AudioStreamPlayer_secret" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2c5ls")
+
+[connection signal="mouse_entered" from="CenterContainer/GridContainer/Button1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/GridContainer/Button2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/GridContainer/Button3" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/GridContainer/Button4" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/GridContainer/Button5" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/GridContainer/Button6" to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="CenterContainer/GridContainer/ButtonReturn" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="CenterContainer/GridContainer/ButtonReturn" to="." method="_on_return_pressed"]
+[connection signal="mouse_entered" from="SecretLevelsButton" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="SecretLevelsButton" to="." method="_on_secret_levels_button_pressed"]

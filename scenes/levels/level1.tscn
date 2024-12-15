@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://voiovrq558iq"]
+[gd_scene load_steps=17 format=3 uid="uid://voiovrq558iq"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_hlxk5"]
 [ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="1_ki607"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="7_bpp5d"]
 [ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="8_orfq1"]
 [ext_resource type="Texture2D" uid="uid://cp2qu026yjgbe" path="res://assets/pics/z1.jpg" id="9_cncnm"]
+[ext_resource type="AudioStream" uid="uid://dqcsr2oyo4lu0" path="res://assets/sfx/music_chill.mp3" id="10_i3gkh"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="11_m7qy6"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
 
@@ -88,6 +90,13 @@ shape = SubResource("CylinderShape3D_6o2sa")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.180176, 0, 0.983634, 0, 1, 0, -0.983634, 0, 0.180176, 6.60484, 2.71127, 0)
 mesh = SubResource("QuadMesh_5odr8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_i3gkh")
+autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_m7qy6")]
+visible = false
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]

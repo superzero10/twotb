@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cu5romk4oucj0"]
+[gd_scene load_steps=18 format=3 uid="uid://cu5romk4oucj0"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_43372"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="2_4ig66"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_tprpi"]
 [ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="3_suuip"]
 [ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_7i5f5"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_sv50j"]
 [ext_resource type="Texture2D" uid="uid://b8fkbvwknis8p" path="res://assets/pics/z7.jpg" id="10_6kct0"]
 [ext_resource type="PackedScene" uid="uid://c34hs3c3xylx" path="res://assets/cyberpunk 3.glb" id="10_o83p4"]
+[ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="11_wk8mw"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
 
@@ -26,6 +28,10 @@ material = SubResource("ORMMaterial3D_g31o1")
 
 [node name="LevelM3" type="Node3D"]
 script = ExtResource("1_43372")
+start_timer_duration = 4.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_4ig66")]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999993, -0.00275678, 0.0026575, 0.000358531, 0.758386, 0.651806, -0.0038123, -0.6518, 0.758381, 0, 26.6836, 11.8052)
@@ -91,5 +97,9 @@ transform = Transform3D(0.469194, 0, 0.883095, 0, 1, 0, -0.883095, 0, 0.469194, 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.367167, 0, 0.930155, 0, 1, 0, -0.930155, 0, 0.367167, 2.4419, 44.0049, -33.6623)
 mesh = SubResource("QuadMesh_2cihf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_wk8mw")
+autoplay = true
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

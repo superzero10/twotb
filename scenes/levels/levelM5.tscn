@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cky3bcrxcd1ys"]
+[gd_scene load_steps=19 format=3 uid="uid://cky3bcrxcd1ys"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_5qphk"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_hwdul"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="2_mbti6"]
 [ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="3_en64o"]
 [ext_resource type="PackedScene" uid="uid://bx77oeigsvi4" path="res://scenes/GameUI.tscn" id="4_7d0ps"]
 [ext_resource type="PackedScene" uid="uid://caalys3216wq6" path="res://scenes/DraggableManager.tscn" id="5_sqtgc"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bl67fweycyu3i" path="res://assets/cyberpunk 2.glb" id="7_ramlm"]
 [ext_resource type="PackedScene" uid="uid://cvhldu3gixjcs" path="res://assets/cyberpunk 2 BIS.glb" id="8_43b8u"]
 [ext_resource type="Texture2D" uid="uid://doqugg60cu6nh" path="res://assets/pics/z9.jpg" id="9_v8dur"]
+[ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="10_jia2t"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
 
@@ -31,6 +33,10 @@ material = SubResource("ORMMaterial3D_xtluv")
 
 [node name="LevelM5" type="Node3D"]
 script = ExtResource("1_5qphk")
+start_timer_duration = 4.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_mbti6")]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999993, -0.00275678, 0.0026575, 0.000358531, 0.758386, 0.651806, -0.0038123, -0.6518, 0.758381, 0, 26.6836, 11.8052)
@@ -146,5 +152,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.817, 34.327, -58.5324)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.997549, 0, 0.0699653, -0.0243422, 0.937525, -0.347065, -0.0655942, -0.347918, -0.935228, 2.98769, 10.5164, -18.7568)
 mesh = SubResource("QuadMesh_j0emq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jia2t")
+autoplay = true
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

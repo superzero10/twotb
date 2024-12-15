@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5ilqkb37jfaf"]
+[gd_scene load_steps=18 format=3 uid="uid://c5ilqkb37jfaf"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_n44eb"]
 [ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="2_ig573"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="2_vlmq3"]
 [ext_resource type="PackedScene" uid="uid://cfh25yn2qxdxn" path="res://assets/Immeuble V5.glb" id="3_2i5js"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="5_0sned"]
 [ext_resource type="PackedScene" uid="uid://b1lsbye1cylvb" path="res://scenes/camera.tscn" id="6_al78f"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_66p46"]
 [ext_resource type="PackedScene" uid="uid://c1iu0xl3okh25" path="res://assets/cyberpunk 7.glb" id="9_mq4y4"]
 [ext_resource type="Texture2D" uid="uid://b65o1ejpjx5vv" path="res://assets/pics/z2.jpg" id="10_r44bw"]
+[ext_resource type="AudioStream" uid="uid://dqcsr2oyo4lu0" path="res://assets/sfx/music_chill.mp3" id="11_0pf7a"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
 
@@ -24,8 +26,11 @@ albedo_texture = ExtResource("10_r44bw")
 [sub_resource type="QuadMesh" id="QuadMesh_x23rt"]
 material = SubResource("ORMMaterial3D_dpajb")
 
-[node name="Level1" type="Node3D"]
+[node name="Level2" type="Node3D"]
 script = ExtResource("1_n44eb")
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_vlmq3")]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.757872, 0.652403, 0, -0.652403, 0.757872, 0, 26.6836, 11.8052)
@@ -156,6 +161,10 @@ transform = Transform3D(0.859062, 0.0468713, 0.509721, -0.0248282, 0.998442, -0.
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.466124, 0, 0.884719, 0, 1, 0, -0.884719, 0, 0.466124, 10.3428, 12.5254, 5.68641)
 mesh = SubResource("QuadMesh_x23rt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_0pf7a")
+autoplay = true
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]

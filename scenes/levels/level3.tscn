@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://we5qbntskn5"]
+[gd_scene load_steps=19 format=3 uid="uid://we5qbntskn5"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_dcu03"]
 [ext_resource type="PackedScene" uid="uid://bbrxnxd6c5bl5" path="res://assets/Immeuble V1.glb" id="2_b7jew"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://p6kud4snbvvw" path="res://scenes/selectables/barrier_model.tscn" id="9_e7cjt"]
 [ext_resource type="PackedScene" uid="uid://dmua73kyvhefx" path="res://scenes/selectables/booster_model.tscn" id="10_olerv"]
 [ext_resource type="Texture2D" uid="uid://canhdmtle823u" path="res://assets/pics/z3.jpg" id="11_c2nx2"]
+[ext_resource type="AudioStream" uid="uid://dqcsr2oyo4lu0" path="res://assets/sfx/music_chill.mp3" id="12_8ulot"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="13_jgmia"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t3nan"]
 
@@ -25,7 +27,7 @@ albedo_texture = ExtResource("11_c2nx2")
 [sub_resource type="QuadMesh" id="QuadMesh_6aa0m"]
 material = SubResource("ORMMaterial3D_8k57k")
 
-[node name="Level1" type="Node3D"]
+[node name="Level3" type="Node3D"]
 script = ExtResource("1_dcu03")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -211,6 +213,13 @@ transform = Transform3D(-0.997819, 0, -0.0660126, 0, 1, 0, 0.0660126, 0, -0.9978
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.999581, 0, -0.0289335, 0, 1, 0, 0.0289335, 0, -0.999581, -14.0323, 2.7789, -3.36188)
 mesh = SubResource("QuadMesh_6aa0m")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8ulot")
+autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("13_jgmia")]
+visible = false
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]
 [connection signal="timeout" from="Countdown" to="." method="_on_Countdown_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://m1dtk2r18hh5"]
+[gd_scene load_steps=22 format=3 uid="uid://m1dtk2r18hh5"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_q2y4d"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_v6k70"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://caljl7x8fjvur" path="res://assets/rick V1.glb" id="11_onwla"]
 [ext_resource type="PackedScene" uid="uid://c34hs3c3xylx" path="res://assets/cyberpunk 3.glb" id="12_0ltbh"]
 [ext_resource type="Texture2D" uid="uid://l25gf4xf3v73" path="res://assets/pics/z6.jpg" id="12_8242i"]
+[ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="13_ujjii"]
+[ext_resource type="PackedScene" uid="uid://davwoi23glv5y" path="res://scenes/menu/pause_menu.tscn" id="14_whg2c"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
 
@@ -34,6 +36,7 @@ material = SubResource("ORMMaterial3D_3igfq")
 
 [node name="LevelM2" type="Node3D"]
 script = ExtResource("1_q2y4d")
+start_timer_duration = 4.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999993, -0.00275678, 0.0026575, 0.000358531, 0.758386, 0.651806, -0.0038123, -0.6518, 0.758381, 0, 26.6836, 11.8052)
@@ -116,5 +119,12 @@ transform = Transform3D(0.827669, -0.0212603, -0.560813, -0.0273704, 0.996564, -
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.965468, 0, -0.260521, 0, 1, 0, 0.260521, 0, -0.965468, -12, 29.2698, -28.3941)
 mesh = SubResource("QuadMesh_exaes")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ujjii")
+autoplay = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("14_whg2c")]
+visible = false
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

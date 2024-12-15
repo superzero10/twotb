@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqlkc1taiqojj"]
+[gd_scene load_steps=22 format=3 uid="uid://dqlkc1taiqojj"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="1_o14lp"]
 [ext_resource type="PackedScene" uid="uid://c2pb27wmn2m22" path="res://scenes/ball.tscn" id="2_gr2nl"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dqsa2qx4sbjpc" path="res://scenes/selectables/fan_model.tscn" id="11_5pltk"]
 [ext_resource type="PackedScene" uid="uid://dmua73kyvhefx" path="res://scenes/selectables/booster_model.tscn" id="12_vmdox"]
 [ext_resource type="Texture2D" uid="uid://dotxm0tsgjswm" path="res://assets/pics/z8.jpg" id="15_4hamq"]
+[ext_resource type="AudioStream" uid="uid://cxpfbg2stipr3" path="res://assets/sfx/music.mp3" id="16_5ja8m"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rgdc6"]
 
@@ -31,6 +32,7 @@ material = SubResource("ORMMaterial3D_6i00x")
 
 [node name="LevelM4" type="Node3D"]
 script = ExtResource("1_o14lp")
+start_timer_duration = 4.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999993, -0.00275678, 0.0026575, 0.000358531, 0.758386, 0.651806, -0.0038123, -0.6518, 0.758381, 0, 26.6836, 11.8052)
@@ -160,5 +162,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41792, 36.5007, -55)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.913418, 0.406584, -0.0189109, -1.32519e-09, 0.0464614, 0.99892, 0.407024, -0.912431, 0.0424386, -9.6929, 41, -41.298)
 mesh = SubResource("QuadMesh_mnv0v")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_5ja8m")
+autoplay = true
 
 [connection signal="selectable_model_selected" from="Player/GameUi" to="Player/DraggableManager" method="_on_game_ui_selectable_model_selected"]

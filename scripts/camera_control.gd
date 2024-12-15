@@ -54,14 +54,11 @@ func _process(delta: float):
 	else:
 		if is_slow_motion:  # Si on désactive le slow motion
 			deactivate_slow_motion()
-	
-
 	# Transition vers le slow motion ou retour à la vitesse normale
 	if is_slow_motion:
 		Engine.time_scale = lerp(Engine.time_scale, slow_motion_scale, delta * slow_motion_transition_speed)
 	else:
 		Engine.time_scale = lerp(Engine.time_scale, 1.0, delta * slow_motion_transition_speed)
-
 	# Appliquer les mouvements (normaux ou ralentis)
 	if camera_active or is_slow_motion:
 		apply_progressive_movement(delta)
