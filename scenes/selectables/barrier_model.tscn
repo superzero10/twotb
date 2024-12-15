@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://p6kud4snbvvw"]
 
-[ext_resource type="PackedScene" path="res://scenes/selectables/SelectableManager.tscn" id="2_gwh6g"]
+[ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="2_gwh6g"]
 [ext_resource type="PackedScene" uid="uid://v250pcns4p0c" path="res://assets/barrier.glb" id="2_umge5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ndwdy"]
