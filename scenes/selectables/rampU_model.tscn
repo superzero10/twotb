@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://b8o8yi3agkxo" path="res://assets/rampU_model.glb" id="1_hdd2r"]
 [ext_resource type="PackedScene" uid="uid://djfwdgdpwnmlj" path="res://scenes/selectables/SelectableManager.tscn" id="2_17jrg"]
 
-[node name="RampUModel" type="Node3D"]
+[node name="RampUModel" type="Node3D" groups=["wall"]]
 
-[node name="rampU_model" parent="." instance=ExtResource("1_hdd2r")]
+[node name="rampU_model" parent="." groups=["wall"] instance=ExtResource("1_hdd2r")]
 transform = Transform3D(-0.13399, 0, -7.69258e-09, 0, 0.0683053, 0, 1.17138e-08, 0, -0.0879928, 0, 0, 0)
 
 [node name="SelectableManager" parent="." instance=ExtResource("2_17jrg")]

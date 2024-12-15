@@ -15,6 +15,7 @@ var rotation_y: float = 0.0
 var camera_active = true
 var ignore_mouse_input = false  # Variable pour ignorer les entrées de la souris temporairement
 var is_slow_motion = false  # Suivi de l'état du slow motion
+var ball = null
 
 # Facteur de ralentissement
 @export var slow_motion_scale: float = 0.2  # Valeur entre 0.0 et 1.0

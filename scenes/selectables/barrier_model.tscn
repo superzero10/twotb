@@ -6,17 +6,17 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_ndwdy"]
 size = Vector3(1, 0.478882, 0.322144)
 
-[node name="BarrierModel" type="Node3D"]
+[node name="BarrierModel" type="Node3D" groups=["wall"]]
 
-[node name="barrier" parent="." instance=ExtResource("2_umge5")]
+[node name="barrier" parent="." groups=["wall"] instance=ExtResource("2_umge5")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0.532112)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="barrier"]
+[node name="StaticBody3D" type="StaticBody3D" parent="barrier" groups=["wall"]]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -5.32112)
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="barrier/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrier/StaticBody3D" groups=["wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.228699, 0.0756226)
 shape = SubResource("BoxShape3D_ndwdy")
 

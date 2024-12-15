@@ -7,21 +7,21 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sqaf"]
 size = Vector3(8.71051, 5.89855, 14.6931)
 
-[node name="BoosterModel" type="Node3D"]
+[node name="BoosterModel" type="Node3D" groups=["wall"]]
 script = ExtResource("1_10ncj")
 impulse_force = 75
 
-[node name="rampe avec boost" parent="." instance=ExtResource("2_178ra")]
+[node name="rampe avec boost" parent="." groups=["wall"] instance=ExtResource("2_178ra")]
 transform = Transform3D(0.1, 0, -8.74227e-09, 0, 0.1, 0, -8.74228e-09, 0, -0.1, 0, 0, 0)
 
 [node name="SelectableManager" parent="." instance=ExtResource("2_angku")]
 model_path = NodePath("../rampe avec boost")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." groups=["wall"]]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["wall"]]
 transform = Transform3D(-0.1, 0, -1.50996e-08, 0, 0.1, 0, 1.50996e-08, 0, -0.1, 0, 0.291586, 0)
 shape = SubResource("BoxShape3D_2sqaf")
 

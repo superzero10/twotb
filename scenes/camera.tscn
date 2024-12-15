@@ -9,4 +9,8 @@ script = ExtResource("1_w8jv1")
 [node name="CameraControl" type="Camera3D" parent="."]
 script = ExtResource("1_27fra")
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collision_mask = 3
+collide_with_areas = true
+
 [connection signal="slow_motion_toggled" from="CameraControl" to="." method="_on_camera_control_slow_motion_toggled"]
